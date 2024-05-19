@@ -9,7 +9,7 @@ function App() {
       {/*  */}
       
       <div className='font-bold'>
-      this is working
+      Setup Almost Completed
 
       </div>
       
