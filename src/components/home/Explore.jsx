@@ -9,6 +9,42 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
+function NextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: "block",
+      }}
+      onClick={onClick}
+    >
+      <div className="absolute h-[90px] w-[90px] flex items-center rounded-full  cursor-pointer ">
+        <img
+          className="h-[90px] w-[90px]"
+          src={ForwardArrowIcon}
+          alt="forward"
+        />
+      </div>
+    </div>
+  );
+}
+
+function PrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "none" }}
+      onClick={onClick}
+    >
+      {/* <div className=" absolute right-0 bottom-0 h-[90px] w-[90px] grid items-center rounded-full  cursor-pointer  ">
+        <img className="h-[90px] w-[90px]" src={BackArrowIcon} alt="forward" />
+      </div> */}
+    </div>
+  );
+}
 const Explore = () => {
   var settings = {
     dots: true,
@@ -16,6 +52,8 @@ const Explore = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
   };
 
   return (

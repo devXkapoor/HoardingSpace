@@ -11,25 +11,40 @@ import ForwardArrowIcon from "../../assets/global/ArrowButtonForward.svg";
 import Description from "../global/Description";
 // import ArrowButton from "../global/ArrowButton";
 
-function SampleNextArrow(props) {
+function NextArrow(props) {
   const { className, style, onClick } = props;
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", background: "red" }}
+      style={{
+        ...style,
+        display: "flex",
+      }}
       onClick={onClick}
-    />
+    >
+      <div className="absolute bottom-0 h-[90px] w-[90px] grid items-center rounded-full  cursor-pointer ">
+        <img
+          className="h-[90px] w-[90px]"
+          src={ForwardArrowIcon}
+          alt="forward"
+        />
+      </div>
+    </div>
   );
 }
 
-function SamplePrevArrow(props) {
+function PrevArrow(props) {
   const { className, style, onClick } = props;
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", background: "green" }}
+      style={{ ...style, display: "flex" }}
       onClick={onClick}
-    />
+    >
+      <div className=" absolute right-0 bottom-0 h-[90px] w-[90px] grid items-center rounded-full  cursor-pointer  ">
+        <img className="h-[90px] w-[90px]" src={BackArrowIcon} alt="forward" />
+      </div>
+    </div>
   );
 }
 
@@ -59,8 +74,8 @@ const OurServices = () => {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
   };
 
   return (

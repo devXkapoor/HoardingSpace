@@ -4,6 +4,7 @@ import share from "../../assets/global/Share.svg";
 import compare from "../../assets/global/Compare.svg";
 import like from "../../assets/global/Like.svg";
 import { Link } from "react-router-dom";
+import ButtonImage from "../../assets/global/ButtonImage.svg";
 
 const AdvertiseItem = (props) => {
   return (
@@ -11,14 +12,23 @@ const AdvertiseItem = (props) => {
       <div className="h-[450px] w-[285px] ">
         <div className="flex flex-col items-center justify-center h-[450px] w-[285px] bg-black hover:opacity-70 opacity-0 absolute hover:cursor-pointer z-10 ">
           <div className="w-[205px] h-[46px]  ">
-            <Button
+            <img
+              className=" opacity-[100] "
+              src={ButtonImage}
+              alt="buttonimage"
+              onClick={() => {
+                console.log("Clicked");
+                // <Link to="/about" />;
+              }}
+            />
+            {/* <Button
               // className="bg-[#FFFFFF] z-20 opacity-100 "
               name={"Add to cart"}
               type={"border"}
               // onClick={() => {
               //   <Link to="/about" />;
               // }}
-            />
+            /> */}
           </div>
           <div className="flex justify-between w-full p-[24px] my-[12px]">
             <img src={share} alt="share" />
@@ -41,7 +51,6 @@ const AdvertiseItem = (props) => {
             </div>
           </div>
         </div>
-        {/* <div className="h-[450px] w-[285px] absolute bg-black opacity-70 hover:block hover:cursor-pointer z-10 "></div> */}
       </div>
     </>
   );
