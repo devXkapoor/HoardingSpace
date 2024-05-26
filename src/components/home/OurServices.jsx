@@ -85,7 +85,7 @@ const OurServices = () => {
           text="Showcase your advertisements in a uniquely exciting, innovative, and creative manner."
         />
 
-        <Slider className="w-full gap-[12px] my-[24px" {...settings}>
+        <Slider className="w-full gap-[12px] my-[24px]" {...settings}>
           {ServicesData.map((items, key) => (
             <ServicesItems img={items.img} name={items.text} />
           ))}
