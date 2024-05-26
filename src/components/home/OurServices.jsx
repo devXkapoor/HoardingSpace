@@ -9,7 +9,6 @@ import img3 from "../../assets/services/img3.png";
 import BackArrowIcon from "../../assets/global/ArrowButtonBack.svg";
 import ForwardArrowIcon from "../../assets/global/ArrowButtonForward.svg";
 import Description from "../global/Description";
-// import ArrowButton from "../global/ArrowButton";
 
 function NextArrow(props) {
   const { className, style, onClick } = props;
@@ -85,16 +84,11 @@ const OurServices = () => {
           title="Our Services"
           text="Showcase your advertisements in a uniquely exciting, innovative, and creative manner."
         />
-        {/* <div className="flex items-center gap-[12px] w-full mt-[20px]"> */}
-        {/* <img src={BackArrowIcon} alt="back-arrow" /> */}
-        <Slider className="w-full  my-[24px]" {...settings}>
+
+        <Slider className="w-full gap-[12px] my-[24px" {...settings}>
           {ServicesData.map((items, key) => (
             <ServicesItems img={items.img} name={items.text} />
           ))}
-          {/* <ServicesItems img={img1} name="Billboard" />
-          <ServicesItems img={img1} name="Billboard" />
-          <ServicesItems img={img1} name="Billboard" />
-          <ServicesItems img={img1} name="Billboard" /> */}
         </Slider>
         {/* </div> */}
       </div>
