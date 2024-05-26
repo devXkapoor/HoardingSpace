@@ -2,8 +2,8 @@ import React from "react";
 import logo from "../../assets/global/Logo.svg";
 import search from "../../assets/global/SearchIcon.svg";
 import contact from "../../assets/global/ContactIcon.svg";
-import heart from "../../assets/global/HeartIcon.svg";
 import cart from "../../assets/global/CartIcon.svg";
+import heart from "../../assets/global/Heart.svg";
 
 import { Link } from "react-router-dom";
 

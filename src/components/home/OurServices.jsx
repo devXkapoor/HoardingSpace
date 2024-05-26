@@ -79,13 +79,13 @@ const OurServices = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center w-[70%] my-[50px]">
+      <div className="flex flex-col items-center w-[80%] my-[50px]">
         <Description
           title="Our Services"
           text="Showcase your advertisements in a uniquely exciting, innovative, and creative manner."
         />
 
-        <Slider className="w-full gap-[12px] my-[24px]" {...settings}>
+        <Slider className="w-full flex gap-[20px] my-[24px]" {...settings}>
           {ServicesData.map((items, key) => (
             <ServicesItems img={items.img} name={items.text} />
           ))}
