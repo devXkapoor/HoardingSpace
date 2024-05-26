@@ -13,16 +13,28 @@ const Header = () => {
       <div className="flex items-center justify-between w-full h-[100px] px-[34px] ">
         <img src={logo} alt="logo" />
         <div className="flex  justify-between items-center w-[430px] h-auto py-[4px] ">
-          <Link className="text-[16px] text-[#000] font-[500]" to="/">
+          <Link
+            className="text-[16px] text-[#000] font-[500] hover:text-[#B88E2F]"
+            to="/"
+          >
             Home
           </Link>
-          <Link className="text-[16px] text-[#000] font-[500]" to="/service">
+          <Link
+            className="text-[16px] text-[#000] font-[500] hover:text-[#B88E2F]"
+            to="/service"
+          >
             Service
           </Link>
-          <Link className="text-[16px] text-[#000] font-[500]" to="/about">
+          <Link
+            className="text-[16px] text-[#000] font-[500] hover:text-[#B88E2F]"
+            to="/about"
+          >
             About
           </Link>
-          <Link className="text-[16px] text-[#000] font-[500]" to="/contact">
+          <Link
+            className="text-[16px] text-[#000] font-[500] hover:text-[#B88E2F]"
+            to="/contact"
+          >
             Contact
           </Link>
         </div>
