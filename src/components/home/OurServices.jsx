@@ -84,13 +84,12 @@ const OurServices = () => {
           title="Our Services"
           text="Showcase your advertisements in a uniquely exciting, innovative, and creative manner."
         />
-
         <Slider className="w-full flex gap-[20px] my-[24px]" {...settings}>
           {ServicesData.map((items, key) => (
-            <ServicesItems img={items.img} name={items.text} />
+            <ServicesItems key={key} img={items.img} name={items.text} />
           ))}
         </Slider>
-        {/* </div> */}
+        \{" "}
       </div>
     </>
   );

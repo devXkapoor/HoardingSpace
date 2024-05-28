@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "../global/Header";
-
 import home from "../../assets/HomeImage.png";
 import OurServices from "./OurServices";
 import Advertisement from "./Advertisement";
