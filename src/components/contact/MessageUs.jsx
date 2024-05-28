@@ -35,8 +35,7 @@ const MessageUs = () => {
               How can Hoarding Space help you?
             </div>
             {data.map((items, key) => (
-              <div className="flex flex-col items-start w-full">
-                {/* {(key = { key })} */}
+              <div className="flex flex-col items-start w-full" key={key}>
                 <div className="text-[16px] text-[#616161] font-[500]">
                   {items.title}
                 </div>

@@ -1,6 +1,5 @@
 import React from "react";
 import AdvertiseItem from "./AdvertiseItem";
-import Button from "../global/Button";
 import pic1 from "../../assets/advertisement/pic1.png";
 import pic2 from "../../assets/advertisement/pic2.png";
 import pic3 from "../../assets/advertisement/pic3.png";
@@ -9,8 +8,11 @@ import pic5 from "../../assets/advertisement/pic5.png";
 import pic6 from "../../assets/advertisement/pic6.png";
 import pic7 from "../../assets/advertisement/pic7.png";
 import pic8 from "../../assets/advertisement/pic8.png";
+import { useNavigate } from "react-router-dom";
+import Button from "../global/Button";
 
 const Advertisement = () => {
+  const navigate = useNavigate();
   const ItemsData = [
     {
       img: pic1,
@@ -70,22 +72,20 @@ const Advertisement = () => {
         </div>
 
         <div className="flex flex-wrap gap-[32px] w-full">
-          {/* <div className="h-[450px] w-[285px] absolute bg-black opacity-70 hidden hover:visible"></div> */}
           {ItemsData.map((item, key) => (
             <AdvertiseItem
+              key={key}
               img={item.img}
               heading={item.heading}
               text={item.text}
               price={item.price}
             />
           ))}
-          {/* <AdvertiseItem />
-          <AdvertiseItem />
-          <AdvertiseItem />
-          <AdvertiseItem />
-          <AdvertiseItem /> */}
         </div>
-        <div className="w-[245px] h-[48px] my-[60px]">
+        <div
+          className="w-[245px] h-[48px] my-[60px] hover:cursor-pointer"
+          onClick={() => navigate("/shop")}
+        >
           <Button name={"Show more"} type={"border"} />
         </div>
       </div>
