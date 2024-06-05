@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Service from "./components/services/Service";
 import AboutUs from "./components/about/AboutUs";
-import ContactUs from "./components/contact/ContactUs";
 import Home from "./components/home/Home";
 import Shop from "./components/shop/Shop";
+import Contact from "./components/contact/Contact";
 
 function App() {
   return (
@@ -13,8 +13,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Service />} />
           <Route path="/about" element={<AboutUs />} />
-          <Route path="/contact" element={<ContactUs />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>
     </>
