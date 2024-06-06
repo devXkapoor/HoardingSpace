@@ -1,5 +1,3 @@
-// import React from "react";
-import Header from "../global/Header";
 import img from "../../assets/ShopImage.png";
 import Dropdown from "../global/Dropdown";
 import arrow from "../../assets/global/DownArrow.svg";
@@ -13,7 +11,6 @@ import pic5 from "../../assets/advertisement/pic5.png";
 import pic6 from "../../assets/advertisement/pic6.png";
 import pic7 from "../../assets/advertisement/pic7.png";
 import pic8 from "../../assets/advertisement/pic8.png";
-import Footer from "../footer/Footer";
 
 const Shop = () => {
   const ItemsData = [
@@ -117,11 +114,6 @@ const Shop = () => {
   return (
     <>
       <div className="flex flex-col items-center justify-center w-full \">
-        <Header />
-        {/* <div className="w-full">
-        <img className="w-full z-0 " src={img} alt="image" />
-          
-        </div> */}
         <div className="flex items-center gap-[32px] justify-center w-full h-auto ">
           <div className="flex flex-col  items-center w-full z-10 absolute">
             <div className="text-[42px] text-[#000] font-[500]">
@@ -179,7 +171,6 @@ const Shop = () => {
             Showing 1-16 of 32 results
           </div>
         </div>
-        <Footer />
       </div>
     </>
   );

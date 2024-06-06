@@ -12,7 +12,7 @@ import instagram from "../../assets/Instagram.svg";
 const Footer = () => {
   return (
     <>
-      <div className="flex flex-col  w-[80%]  mt-[60px]">
+      <div className="flex flex-col  w-full px-[84px]  mt-[60px]">
         <div className="h-[1px] w-full bg-[#D9D9D9] my-[16px]" />
         <div className="flex justify-between w-full px-[4px]">
           <FooterItems

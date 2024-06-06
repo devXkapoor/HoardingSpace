@@ -1,9 +1,7 @@
 import React from "react";
-import Header from "../global/Header";
 import PageType from "../global/PageType";
 import CustomInput from "../global/CustomInput";
 import Button from "../global/Button";
-import Footer from "../footer/Footer";
 import location from "../../assets/global/LocationIcon.svg";
 import call from "../../assets/global/Callicon.svg";
 import clock from "../../assets/global/Clock.svg";
@@ -33,7 +31,6 @@ const Contact = () => {
   return (
     <>
       <div className="flex flex-col items-center w-full">
-        <Header />
         <PageType page="Contact" />
         <div className="flex flex-col w-full items-center text-center  my-[72px]">
           <div className="text-[#000] text-[32px] font-[600]">
@@ -105,7 +102,6 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     </>
   );
