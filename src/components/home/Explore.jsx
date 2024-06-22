@@ -8,6 +8,7 @@ import arrow from "../../assets/global/ArrowButtonForward.svg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { useNavigate } from "react-router-dom";
 
 function NextArrow(props) {
   const { className, style, onClick } = props;
@@ -38,19 +39,17 @@ function PrevArrow(props) {
       className={className}
       style={{ ...style, display: "none" }}
       onClick={onClick}
-    >
-      {/* <div className=" absolute right-0 bottom-0 h-[90px] w-[90px] grid items-center rounded-full  cursor-pointer  ">
-        <img className="h-[90px] w-[90px]" src={BackArrowIcon} alt="forward" />
-      </div> */}
-    </div>
+    ></div>
   );
 }
 const Explore = () => {
+  const navigate = useNavigate();
+
   var settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 2,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
@@ -71,21 +70,18 @@ const Explore = () => {
             </div>
           </div>
           {/*  */}
-          <div className="w-[176px] h-[48px]">
+          <div className="w-[176px] h-[48px]" onClick={() => navigate("/city")}>
             <Button name={"Explore More"} type={"plain"} />
           </div>
         </div>
-        <div className="flex flex-col items-start gap-[16px] max-w-[410px]">
-          <img src={img1} alt="img" />
-        </div>
-        <div className="flex items-start  gap-[16px] max-w-[410px] ">
-          <Slider className="w-[400px] gap-[4px] rounded-md" {...settings}>
+
+        {/* <div className="flex items-start ">
+          <Slider className="min-w-[400px] rounded-md" {...settings}>
             <img className="w-full" src={img2} alt="img" />
             <img className="" src={img2} alt="img" />
             <img className="" src={img2} alt="img" />
           </Slider>
-          {/* <img src={ForwardArrowIcon} alt="forward-arrow" /> */}
-        </div>
+        </div> */}
       </div>
     </>
   );

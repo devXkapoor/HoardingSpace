@@ -23,14 +23,14 @@ const MessageUs = () => {
       <div className="flex flex-col w-full items-center my-[44px]">
         <div className="flex flex-col w-full items-center text-center my-[32px] ">
           <div className="text-[#616161] text-[20px] font-[600] leading-[30px] w-[560px]">
-            How can Hoarding Space help you?{" "}
+            How can Hoarding Space help you?
           </div>
           <div className="text-[#3A3A3A] text-[40px] font-[700]">
-            Talk to us!{" "}
+            Talk to us!
           </div>
         </div>
         <div className="flex max-w-[1064px] min-h-[464px] shadow-md rounded-[16px] shadow-[rgba(0,0,0,0.25)]">
-          <div className="flex flex-col justify-between w-[40%] bg-[#FCF8F3] py-[60px] px-[25px]">
+          <div className="flex flex-col justify-start gap-[36px] w-[40%] bg-[#FCF8F3] py-[60px] px-[25px]">
             <div className="text-[20px] text-[#616161] font-[600] underline">
               How can Hoarding Space help you?
             </div>

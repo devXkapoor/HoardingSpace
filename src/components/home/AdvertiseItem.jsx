@@ -11,9 +11,9 @@ const AdvertiseItem = (props) => {
     <>
       <div className="h-[450px] w-[285px] ">
         <div className="flex flex-col items-center justify-center h-[450px] w-[285px] bg-black hover:opacity-70 opacity-0 absolute hover:cursor-pointer z-10 ">
-          <div className="w-[205px] h-[46px]  ">
+          <div className="relative w-[205px] h-[46px] ">
             <img
-              className=" opacity-[100] "
+              className="opacity-[100] "
               src={ButtonImage}
               alt="buttonimage"
               onClick={() => {
@@ -30,11 +30,11 @@ const AdvertiseItem = (props) => {
               // }}
             /> */}
           </div>
-          <div className="flex justify-between w-full p-[24px] my-[12px]">
+          {/* <div className="flex justify-between w-full p-[24px] my-[12px]">
             <img src={share} alt="share" />
             <img src={compare} alt="compare" />
             <img src={like} alt="like" />
-          </div>
+          </div> */}
         </div>
 
         <div className="flex flex-col w-[285px] bg-[#F4F5F7] h-[450px] relative  z-0 ">
