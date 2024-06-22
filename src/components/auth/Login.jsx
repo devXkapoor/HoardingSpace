@@ -17,7 +17,7 @@ const Login = () => {
   const login = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, Email, Password);
-      alert("You are login");
+      alert("You have LogedIn");
       console.log(user);
     } catch (error) {
       console.log(error.message);
@@ -93,12 +93,15 @@ const Login = () => {
           </div>
           {/*  */}
           <div className="flex w-full items-center  gap-[8px]">
-            <input className="h-[16px] w-[16px]" type="checkbox" />
+            <input
+              className="h-[16px] w-[16px] cursor-pointer"
+              type="checkbox"
+            />
             <div className="text-[16px] text-[#333333] font-[400]">
               Remember me
             </div>
           </div>
-          <button
+          {/* <button
             className=" p-[16px] border-[4px] hover:bg-slate-500"
             onClick={() => {
               login();
@@ -106,10 +109,16 @@ const Login = () => {
             }}
           >
             login
-          </button>
-          {/* <div className="w-full" onClick={login}>
+          </button> */}
+          <div
+            className="w-full cursor-pointer"
+            onClick={() => {
+              login();
+              navigate("/about");
+            }}
+          >
             <Button name="Login" type="plain" />
-          </div> */}
+          </div>
           {/* <CustomInput head="Name*" type="text" placeholder="Enter name" /> */}
           {/* <CustomInput head="Email*" type="email" placeholder="Enter your email" /> */}
         </div>

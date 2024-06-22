@@ -54,14 +54,14 @@ const SignUp = () => {
       <PageType page="SignUp" />
 
       {user ? (
-        <div className="flex w-full justify-center">
-          <div className="flex flex-col gap-[16px] rounded-md border-[2px] w-[30%] text-center p-[16px]">
+        <div className="flex w-full justify-center my-[84px]">
+          <div className="flex flex-col gap-[16px] rounded-md border-[1px] w-[30%] text-center p-[18px] shadow-lg">
             <div className="text-[24px] text-[#111] font-[600]">
-              You Logedin with Email :
+              You Loged-in with Email :
             </div>
             <div>{user?.email}</div>
             <button
-              className="p-[8px] border-[2px] hover:bg-slate-200 w-[100px]"
+              className="p-[8px] border-[2px] hover:bg-slate-400 w-[100px]"
               onClick={() => {
                 Logout();
                 navigate("/");
@@ -135,7 +135,10 @@ const SignUp = () => {
               </div>
               {/*  */}
               <div className="flex w-full items-center  gap-[8px]">
-                <input className="h-[16px] w-[16px]" type="checkbox" />
+                <input
+                  className="h-[16px] w-[16px] cursor-pointer"
+                  type="checkbox"
+                />
                 <div className="text-[16px] text-[#333333] font-[400]">
                   By creating an account, I agree to our{" "}
                   <span className=" underline cursor-pointer">
@@ -143,15 +146,24 @@ const SignUp = () => {
                   </span>
                 </div>
               </div>
-              <button
+              {/* <button
                 className=" p-[16px] border-[4px] hover:bg-slate-500"
                 onClick={() => {
                   register();
                   navigate("/");
                 }}
               >
-                Account
-              </button>
+                Create Account
+              </button> */}
+
+              <div
+                onClick={() => {
+                  register();
+                  navigate("/");
+                }}
+              >
+                <Button name="Create an account" type="plain" />
+              </div>
 
               {/* <div
               onClick={() => {
@@ -173,15 +185,6 @@ const SignUp = () => {
                 onClick={registerWithGoogle}
               />
             </div>
-            {/* <div className="flex flex-col gap-[4px] rounded-md border-[2px]">
-              <div>Loged in as: {user?.email}</div>
-              <button
-                className="p-[8px] border-[2px] hover:bg-slate-200"
-                onClick={Logout}
-              >
-                Logout
-              </button>
-            </div> */}
           </div>
         </div>
       )}

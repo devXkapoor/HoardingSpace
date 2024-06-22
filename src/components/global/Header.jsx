@@ -20,7 +20,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between  h-[100px] px-[34px] w-full">
+      <div className="flex items-center justify-between  h-[100px] px-[34px] w-full  shadow-sm">
         <img src={logo} alt="logo" />
         <div className="flex  justify-between items-center w-[430px] h-auto py-[4px] ">
           <Link
@@ -31,7 +31,7 @@ const Header = () => {
           </Link>
           <Link
             className="text-[16px] text-[#000] font-[500] hover:text-[#B88E2F]"
-            to="/services"
+            // to="/services"
           >
             Service
           </Link>
