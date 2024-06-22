@@ -21,12 +21,8 @@ function NextArrow(props) {
       }}
       onClick={onClick}
     >
-      <div className="absolute h-[90px] w-[90px] flex items-center rounded-full  cursor-pointer ">
-        <img
-          className="h-[90px] w-[90px]"
-          src={ForwardArrowIcon}
-          alt="forward"
-        />
+      <div className=" absolute w-[70px]  cursor-pointer  ">
+        <img className="" src={ForwardArrowIcon} alt="forward" />
       </div>
     </div>
   );
@@ -57,12 +53,12 @@ const Explore = () => {
 
   return (
     <>
-      <div className="flex justify-center gap-[24px] items-start bg-[#FCF8F3] w-full py-[32px] ">
+      <div className="flex justify-center gap-[24px] items-start bg-[#FCF8F3] w-full py-[12px] ">
         {/*  */}
         <div className="flex flex-col items-start justify-center gap-[16px] max-w-[450px] h-[580px]">
           <div className="flex flex-col w-full items-center justify-center text-start ">
             <div className="text-[#333] text-[40px] font-[700]">
-              Explore your Urban Landscape{" "}
+              Explore your Urban Landscape
             </div>
             <div className="text-[#666] text-[16px] font-[500] leading-[30px] ">
               Discover top-tier businesses from around the globe through our
@@ -75,13 +71,13 @@ const Explore = () => {
           </div>
         </div>
 
-        {/* <div className="flex items-start ">
-          <Slider className="min-w-[400px] rounded-md" {...settings}>
-            <img className="w-full" src={img2} alt="img" />
-            <img className="" src={img2} alt="img" />
-            <img className="" src={img2} alt="img" />
+        <div className="flex w-[50%] p-[32px] ">
+          <Slider className="w-full gap-[12px] " {...settings}>
+            <img className="max-w-[350px]" src={img2} alt="img" />
+            <img className=" max-w-[350px]" src={img2} alt="img" />
+            <img className="max-w-[350px]" src={img2} alt="img" />
           </Slider>
-        </div> */}
+        </div>
       </div>
     </>
   );
