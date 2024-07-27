@@ -1,7 +1,5 @@
 import { useState } from "react";
-import CustomInput from "../global/CustomInput";
-import Button from "../global/Button";
-import PageType from "../global/PageType";
+import PageType from "../../global/PageType";
 import { useNavigate } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
@@ -9,11 +7,21 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
-import { auth, googleProvider } from "../../../firebase.config";
-import login from "../../assets/global/Googlelogin.svg";
+import { auth, googleProvider } from "../../../../firebase.config";
+
+//---> firestore
+import { setDoc, doc } from "firebase/firestore";
+import { db } from "../../../../firebase.config";
+import Button from "../../global/Button";
+import LoginIcon from "../../../assets/global/Googlelogin.svg";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const navigate = useNavigate();
+
+  const [userType, setuserType] = useState("user");
+  const [lname, setLname] = useState("");
+  const [fname, setFname] = useState("");
 
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
@@ -26,22 +34,31 @@ const SignUp = () => {
   const register = async () => {
     try {
       const user = await createUserWithEmailAndPassword(auth, Email, Password);
-      alert("User Registered Succesfully");
-      console.log(user);
+      const data = { userType, fname, lname, Email, Password };
+      console.log("data", data, user?.user?.uid);
+      const res = await setDoc(doc(db, "UserData", user?.user?.uid), data);
+      console.log("res", res);
+      toast.success("User Registered Succesfully");
+
+      // alert("User Registered Succesfully");
+      navigate("/");
     } catch (error) {
-      console.log(error.message);
+      toast.error(error);
+
+      // alert("Error in creating account!");
+      // console.log(error.message);
     }
   };
 
   const registerWithGoogle = async () => {
     try {
       const user = await signInWithPopup(auth, googleProvider);
-      alert("User Registered Succesfully");
-      navigate("/");
-      console.log(user);
+      toast.success("User Registered Succesfully");
+      // alert("User Registered Succesfully");
     } catch (error) {
-      console.log(error.message);
-      alert(error.message);
+      toast.error(error);
+      // console.log(error.message);
+      // alert(error.message);
     }
   };
 
@@ -54,22 +71,27 @@ const SignUp = () => {
       <PageType page="SignUp" />
 
       {user ? (
-        <div className="flex w-full justify-center my-[84px]">
-          <div className="flex flex-col gap-[16px] rounded-md border-[1px] w-[30%] text-center p-[18px] shadow-lg">
-            <div className="text-[24px] text-[#111] font-[600]">
-              You Loged-in with Email :
+        <div className="w-full flex flex-col ">
+          <div className="flex w-full justify-center my-[84px] ">
+            <div className="flex flex-col gap-[16px] rounded-md border-[1px] w-[30%] text-center p-[18px] shadow-lg">
+              <div className="text-[24px] text-[#111] font-[600]">
+                You Loged-in with Email :
+              </div>
+              <div>{user?.email}</div>
+              <div>{user?.fname}</div>
+
+              <button
+                className="p-[8px] border-[2px] hover:bg-slate-400 w-[100px]"
+                onClick={() => {
+                  Logout();
+                  navigate("/LoginType");
+                }}
+              >
+                Logout
+              </button>
             </div>
-            <div>{user?.email}</div>
-            <button
-              className="p-[8px] border-[2px] hover:bg-slate-400 w-[100px]"
-              onClick={() => {
-                Logout();
-                navigate("/");
-              }}
-            >
-              Logout
-            </button>
           </div>
+          <div className="flex"></div>
         </div>
       ) : (
         <div className="flex w-full justify-center my-[84px]">
@@ -96,6 +118,7 @@ const SignUp = () => {
                   className="h-[56px] min-w-[580px] border-[1px] rounded-[4px] border-[#66666659] pl-[12px] "
                   type="text"
                   placeholder="First name"
+                  onChange={(e) => setFname(e.target.value)}
                 />
               </div>
               {/*  */}
@@ -107,6 +130,7 @@ const SignUp = () => {
                   className="h-[56px] min-w-[580px] border-[1px] rounded-[4px] border-[#66666659] pl-[12px] "
                   type="text"
                   placeholder="Last name "
+                  onChange={(e) => setLname(e.target.value)}
                 />
               </div>
               {/*  */}
@@ -146,33 +170,16 @@ const SignUp = () => {
                   </span>
                 </div>
               </div>
-              {/* <button
-                className=" p-[16px] border-[4px] hover:bg-slate-500"
-                onClick={() => {
-                  register();
-                  navigate("/");
-                }}
-              >
-                Create Account
-              </button> */}
 
               <div
                 onClick={() => {
                   register();
-                  navigate("/");
                 }}
               >
                 <Button name="Create an account" type="plain" />
               </div>
 
-              {/* <div
-              onClick={() => {
-                register;
-                console.log("user added");
-              }}
-            >
-              <Button name="Create an account" type="plain" />
-            </div> */}
+              {/* signup with google */}
               <div className="flex w-full  justify-between items-center">
                 <div className="h-[2px] min-w-[200px] bg-[#66666640] ml-[12px]" />
                 <div className="text-[20px] text-[#333] font-[400]">OR</div>
@@ -180,7 +187,7 @@ const SignUp = () => {
               </div>
               <img
                 className=" cursor-pointer"
-                src={login}
+                src={LoginIcon}
                 alt="goofle signin"
                 onClick={registerWithGoogle}
               />

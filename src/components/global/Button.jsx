@@ -5,7 +5,7 @@ const Button = (props) => {
     <>
       {props.type == "plain" && (
         <div
-          className={`flex items-center justify-center  bg-[#B88E2F] hover:bg-[#a37c20]`}
+          className={`flex items-center justify-center  bg-[#B88E2F] hover:bg-[#a37c20] cursor-pointer`}
         >
           <button className="text-[16px] text-[#FFF] font-[600] p-[16px]">
             {props.name}
@@ -13,7 +13,7 @@ const Button = (props) => {
         </div>
       )}
       {props.type == "border" && (
-        <div className="flex items-center justify-center bg-white hover:bg-[#f4f2f2] border-[1px] border-[#B88E2F] opacity-100">
+        <div className="flex items-center justify-center bg-white hover:bg-[#f4f2f2] border-[1px] border-[#B88E2F] opacity-100 cursor-pointer">
           <button className="text-[16px] text-[#B88E2F] font-[600] p-[16px]">
             {props.name}
           </button>
