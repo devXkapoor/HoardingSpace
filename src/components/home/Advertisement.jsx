@@ -1,68 +1,35 @@
-import React from "react";
 import AdvertiseItem from "./AdvertiseItem";
-import pic1 from "../../assets/advertisement/pic1.png";
-import pic2 from "../../assets/advertisement/pic2.png";
-import pic3 from "../../assets/advertisement/pic3.png";
-import pic4 from "../../assets/advertisement/pic4.png";
-import pic5 from "../../assets/advertisement/pic5.png";
-import pic6 from "../../assets/advertisement/pic6.png";
-import pic7 from "../../assets/advertisement/pic7.png";
-import pic8 from "../../assets/advertisement/pic8.png";
-import { useNavigate } from "react-router-dom";
 import Button from "../global/Button";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+// firebase -->
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../../firebase.config";
 
 const Advertisement = () => {
   const navigate = useNavigate();
-  const ItemsData = [
-    {
-      img: pic1,
-      heading: "Hoarding",
-      text: "West Bandra Mumbai,234781",
-      price: "Rs. 2.500.000",
-    },
-    {
-      img: pic2,
-      heading: "Leviosa",
-      text: "West Bandra Mumbai,744781",
-      price: "Rs. 2.500.000",
-    },
-    {
-      img: pic3,
-      heading: "Bus Shelter",
-      text: "West Bandra Mumbai,134781",
-      price: "Rs. 7.500.000",
-    },
-    {
-      img: pic4,
-      heading: "Hoarding",
-      text: "Worli Mumbai,346281",
-      price: "Rs. 1.500.000",
-    },
-    {
-      img: pic5,
-      heading: "Bus Shelter",
-      text: "West Bandra Mumbai,234781",
-      price: "Rs. 5.500.000",
-    },
-    {
-      img: pic6,
-      heading: "Hoarding",
-      text: "Worli Mumbai,556781",
-      price: "Rs. 6.200.000",
-    },
-    {
-      img: pic7,
-      heading: "Bus Shelter",
-      text: "East Bandra Mumbai,834781",
-      price: "Rs. 9.600.000",
-    },
-    {
-      img: pic8,
-      heading: "Leviosa",
-      text: "West Bandra Mumbai,734781",
-      price: "Rs. 4.400.000",
-    },
-  ];
+  const [data, setdata] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let datalist = [];
+      try {
+        const querySnapshot = await getDocs(collection(db, "CompleteItems"));
+        querySnapshot.forEach((doc) => {
+          datalist.push({ id: doc.id, ...doc.data() });
+        });
+        console.log(datalist);
+        setdata(datalist);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+    console.log(data);
+  }, []);
+
+  const items = data.slice(0, 8);
 
   return (
     <>
@@ -72,13 +39,14 @@ const Advertisement = () => {
         </div>
 
         <div className="flex flex-wrap gap-[32px] w-full">
-          {ItemsData.map((item, key) => (
+          {items.map((item, key) => (
             <AdvertiseItem
               key={key}
+              heading={item.type}
+              text={item.location}
+              price={item.monthlyprice}
               img={item.img}
-              heading={item.heading}
-              text={item.text}
-              price={item.price}
+              id={item.id}
             />
           ))}
         </div>

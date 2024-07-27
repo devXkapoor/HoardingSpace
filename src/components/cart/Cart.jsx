@@ -1,16 +1,13 @@
 import React from "react";
-import MessageUs from "../contact/MessageUs";
-import ItemDetail from "./ItemDetail";
-import CartItems from "./CartItems";
+import PageType from "../global/PageType";
+import FinalCart from "./FinalCart";
 
 const Cart = () => {
   return (
-    <div className="flex flex-col gap-[84px] items-center w-full">
-      <ItemDetail />
-      <ItemDetail />
-      <ItemDetail />
-      <MessageUs />
-    </div>
+    <>
+      <PageType page="Cart" />
+      <FinalCart />
+    </>
   );
 };
 
