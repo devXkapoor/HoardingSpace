@@ -8,10 +8,13 @@ import CartTotal from "./CartTotal";
 import PageType from "../global/PageType";
 import calender from "../../assets/CalenderIcon.svg";
 import { toast } from "react-toastify";
+import { ClipLoader } from "react-spinners";
 
 const FinalCart = () => {
   const [data, setData] = useState([]);
   const [user, setuser] = useState({});
+  let [color, setColor] = useState("#ffba08");
+  let [loading, setLoading] = useState(false);
 
   // const { id } = useParams(); //param got id from url so url change first then we grab id from useparams
 
@@ -24,6 +27,7 @@ const FinalCart = () => {
   const fetchData = async () => {
     let datalist = [];
     try {
+      setLoading(true);
       const querySnapshot = await getDocs(collection(db, `${user.uid}`));
       querySnapshot.forEach((doc) => {
         datalist.push({ id: doc.id, ...doc.data() });
@@ -31,6 +35,7 @@ const FinalCart = () => {
       // console.log("datalist", user.uid, datalist);
       // console.log("function working");
       setData(datalist);
+      setLoading(false);
     } catch (err) {
       toast.error(err);
       // console.log(err);
@@ -51,6 +56,25 @@ const FinalCart = () => {
       fetchData();
     }
   }, [user]);
+  // setLoading(true);
+
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center w-full">
+        <PageType page="Cart" />
+
+        <ClipLoader
+          className="my-[84px]"
+          color={color}
+          loading={loading}
+          // cssOverride={override}
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
+  }
 
   return (
     <>

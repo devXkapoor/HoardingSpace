@@ -5,10 +5,14 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { db, auth } from "../../../firebase.config";
 import { toast } from "react-toastify";
+import { ClipLoader } from "react-spinners";
 
 const ItemInfo = (props) => {
   const navigate = useNavigate();
   const [data, setdata] = useState({});
+  let [color, setColor] = useState("#ffba08");
+
+  let [loading, setLoading] = useState(false);
 
   //---->
   const { id } = useParams(); //param got id from url so url change first then we grab id from useparams
@@ -16,6 +20,8 @@ const ItemInfo = (props) => {
 
   useEffect(() => {
     const SingleData = async () => {
+      setLoading(true);
+
       const docRef = doc(db, "CompleteItems", id);
       const docSnap = await getDoc(docRef);
 
@@ -26,6 +32,7 @@ const ItemInfo = (props) => {
         console.log("No such document!");
         return null;
       }
+      setLoading(false);
     };
     SingleData();
   }, [id]);
@@ -52,6 +59,24 @@ const ItemInfo = (props) => {
       // console.log(error);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center w-full">
+        {/* <PageType page="Cart" /> */}
+
+        <ClipLoader
+          className="my-[84px]"
+          color={color}
+          loading={loading}
+          // cssOverride={override}
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col items-center justify-center w-full">
