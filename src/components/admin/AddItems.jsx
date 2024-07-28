@@ -107,13 +107,13 @@ const AddItems = () => {
   };
 
   return (
-    <div className="flex w-full justify-center my-[24px]">
+    <div className="flex w-full justify-center my-[24px] ">
       <div className="flex flex-col items-center gap-[32px] p-[16px]">
-        <div className="flex flex-col gap-[32px] p-[16px] ">
+        <div className="flex flex-col gap-[32px] py-[24px] px-[64px] border-2 rounded-xl ">
           {/*  */}
           <div className="flex justify-center  items-center  w-full">
             <div className="text-[32px] text-[#333] font-[600]">
-              Add an Item
+              Create Advertisement
             </div>
           </div>
           {/*  */}

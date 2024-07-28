@@ -3,6 +3,7 @@ import PageType from "../global/PageType";
 import AdvertiseItem from "../home/AdvertiseItem";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 
 // firebase -->
 import { collection, getDocs } from "firebase/firestore";
@@ -10,17 +11,21 @@ import { db } from "../../../firebase.config";
 
 const Shop = () => {
   const [data, setdata] = useState([]);
+  let [color, setColor] = useState("#ffba08");
+  let [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       let datalist = [];
       try {
+        setLoading(true);
         const querySnapshot = await getDocs(collection(db, "CompleteItems"));
         querySnapshot.forEach((doc) => {
           datalist.push({ id: doc.id, ...doc.data() });
         });
         console.log(datalist);
         setdata(datalist);
+        setLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -40,8 +45,35 @@ const Shop = () => {
           <Dropdown name="Tags" />
           <Dropdown name="LIT/ NONLIT" />
         </div>
-        <div className="flex flex-wrap gap-[32px] w-[75%] mt-[46px]">
-          {data.map((item, key) => (
+        {/* <div className="flex flex-wrap gap-[32px] w-[75%] mt-[46px]"> */}
+        {loading ? (
+          <ClipLoader
+            className="my-[84px]"
+            color={color}
+            loading={loading}
+            // cssOverride={override}
+            size={100}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        ) : (
+          <div className="flex justify-center items-center w-full ">
+            <div className="flex flex-wrap gap-[40px] w-[75%] mt-[46px]">
+              {data.map((item, key) => (
+                <AdvertiseItem
+                  key={key}
+                  heading={item.type}
+                  text={item.location}
+                  price={item.monthlyprice}
+                  img={item.img}
+                  id={item.id}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* {data.map((item, key) => (
             <AdvertiseItem
               key={key}
               heading={item.type}
@@ -50,8 +82,8 @@ const Shop = () => {
               img={item.img}
               id={item.id}
             />
-          ))}
-        </div>
+          ))} */}
+        {/* </div> */}
 
         {/* ---> Pagenation Button  */}
         <div className="flex flex-col items-center w-full my-[32px]">
@@ -69,9 +101,9 @@ const Shop = () => {
               <p className="text-[20px] text-[#000] font-[400] p-0">NEXT </p>
             </div>
           </div>
-          <div className="text-[16px] text-[#000] font-[400] my-[20px] ">
+          {/* <div className="text-[16px] text-[#000] font-[400] my-[20px] ">
             Showing 1-16 of 32 results
-          </div>
+          </div> */}
         </div>
       </div>
     </>
