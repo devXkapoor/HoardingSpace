@@ -58,7 +58,7 @@ const Shop = () => {
           />
         ) : (
           <div className="flex justify-center items-center w-full ">
-            <div className="flex flex-wrap gap-[40px] max-w-[78%] mt-[46px] bg-slate-400 p-6">
+            <div className="flex flex-wrap gap-[40px] max-w-[78%] mt-[46px] p-6">
               {data.map((item, key) => (
                 <AdvertiseItem
                   key={key}
