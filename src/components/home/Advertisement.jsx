@@ -38,7 +38,7 @@ const Advertisement = () => {
           Outdoor Advertising
         </div>
 
-        <div className="flex flex-wrap gap-[32px] w-full">
+        <div className="flex flex-wrap gap-[28px] w-full">
           {items.map((item, key) => (
             <AdvertiseItem
               key={key}
