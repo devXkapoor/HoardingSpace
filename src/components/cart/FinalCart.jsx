@@ -9,12 +9,14 @@ import PageType from "../global/PageType";
 import calender from "../../assets/CalenderIcon.svg";
 import { toast } from "react-toastify";
 import { ClipLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
 
 const FinalCart = () => {
   const [data, setData] = useState([]);
   const [user, setuser] = useState({});
   let [color, setColor] = useState("#ffba08");
   let [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   // const { id } = useParams(); //param got id from url so url change first then we grab id from useparams
 
@@ -41,15 +43,15 @@ const FinalCart = () => {
       // console.log(err);
     }
   };
-  // const DeleatItem = async (id) => {
-  //   try {
-  //     await deleteDoc(doc(db, `${user.uid}`, id));
-  //     toast.success("Item deleated successfully");
-  //     console.log(id);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const DeleatItem = async (id) => {
+    try {
+      await deleteDoc(doc(db, `${user.uid}`, id));
+      toast.success("Item deleated successfully");
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     if (user) {
@@ -100,7 +102,7 @@ const FinalCart = () => {
                     </div>
                     <img
                       className=" cursor-pointer"
-                      // onClick={DeleatItem}
+                      onClick={() => DeleatItem(item.id)}
                       src={deleat}
                       alt="deleat icon"
                     />
