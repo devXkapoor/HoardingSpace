@@ -1,7 +1,9 @@
 import React from "react";
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
 const Enquire = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="flex flex-col items-start max-w-[650px] max-h-[445px] bg-[#FFF3E3] z-10 absolute rounded-lg p-[72px_52px_4px_32px] mr-[142px]">
@@ -14,8 +16,15 @@ const Enquire = () => {
         <div className="text-[18px] text-[#333] font-[500]">
           The Future of Outdoor Advertising Starts Here
         </div>
-        <div className="w-[260px] h-[74px] my-[16px]">
-          <Button name={"ENQUIRE NOW"} type={"plain"} />
+        <div
+          className="w-[260px] h-[74px] my-[16px]"
+          onClick={() => navigate("/contact")}
+        >
+          <Button
+            name={"ENQUIRE NOW"}
+            type={"plain"}
+            // onClick={navigate("/shop")}
+          />
         </div>
       </div>
     </>
