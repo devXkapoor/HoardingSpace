@@ -47,6 +47,7 @@ const FinalCart = () => {
     try {
       await deleteDoc(doc(db, `${user.uid}`, id));
       toast.success("Item deleated successfully");
+      // setLoading(false);
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -102,7 +103,10 @@ const FinalCart = () => {
                     </div>
                     <img
                       className=" cursor-pointer"
-                      onClick={() => DeleatItem(item.id)}
+                      onClick={() => {
+                        DeleatItem(item.id);
+                        // setLoading(true);
+                      }}
                       src={deleat}
                       alt="deleat icon"
                     />
