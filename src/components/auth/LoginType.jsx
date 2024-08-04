@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { auth, db } from "../../../firebase.config";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import AddItems from "../admin/AddItems";
+import AddItems from "../addItem/AddItems";
 
 const LoginType = () => {
   const navigate = useNavigate();

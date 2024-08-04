@@ -52,7 +52,7 @@ const Advertisement = () => {
         </div>
         <div
           className="w-[245px] h-[48px] my-[60px] hover:cursor-pointer"
-          onClick={() => navigate("/shop")}
+          onClick={() => navigate("/shop/all")}
         >
           <Button name={"Show more"} type={"border"} />
         </div>
