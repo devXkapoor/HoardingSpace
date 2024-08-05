@@ -5,42 +5,30 @@ import { auth, db } from "../../../firebase.config";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import AddItems from "../addItem/AddItems";
+import Login from "./user/Login";
+import { toast } from "react-toastify";
 
 const LoginType = () => {
   const navigate = useNavigate();
   const [user, setuser] = useState({});
   const [data, setData] = useState({});
 
-  onAuthStateChanged(auth, (currentuser) => {
-    setuser(currentuser);
-  });
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentuser) => {
+      setuser(currentuser);
+    });
+  }, []);
 
   const Logout = async () => {
     await signOut(auth);
+    toast.info("You Loged-Out");
+    navigate("/");
   };
-
-  useEffect(() => {
-    const SingleData = async () => {
-      const docRef = doc(db, "UserData", user?.uid);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists(user.uid)) {
-        console.log("Document data:", docSnap.data());
-        setData(docSnap.data());
-      } else {
-        console.log("No such document!");
-        return null;
-      }
-    };
-    if (user?.uid) {
-      SingleData();
-    }
-  }, [user]);
 
   return (
     <>
       {user ? (
-        <div className="flex flex-col w-full gap-[34px]">
+        <div className="flex flex-col w-full gap-[34px] mt-[100px] mb-[195px]">
           <div className="w-full flex flex-col ">
             <div className="flex w-full justify-center my-[84px] ">
               <div className="flex flex-col gap-[16px] rounded-md border-[1px] w-[30%] text-center p-[18px] shadow-lg">
@@ -60,25 +48,9 @@ const LoginType = () => {
               </div>
             </div>
           </div>
-          {data.userType === "advertiser" ? <AddItems /> : <div></div>}
         </div>
       ) : (
-        <div className="flex w-full justify-center items-center my-[210px] p-4  ">
-          <div className="flex flex-col items-center gap-[16px] rounded-lg border-[1px] border-t-[#cdcaca] border-t-4 w-[30%] text-center px-[18px] py-[52px] shadow-lg">
-            <div
-              className="text-[22px] text-[#4d4c4c] font-[500] hover:underline cursor-pointer "
-              onClick={() => navigate("/login")}
-            >
-              Login as User
-            </div>
-            <div
-              className="text-[20px] text-[#4d4c4c] font-[500] hover:underline cursor-pointer"
-              onClick={() => navigate("/advertiserLogin")}
-            >
-              Login as Advertiser
-            </div>
-          </div>
-        </div>
+        <Login />
       )}
     </>
   );

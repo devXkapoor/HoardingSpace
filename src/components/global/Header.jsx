@@ -46,29 +46,44 @@ const Header = () => {
           </Link>
         </div>
         {/* icons */}
-        <div className="flex items-center justify-between w-[300px] py-[4px] px-[24px]">
+        <div className="flex items-center gap-[28px] mr-[24px]">
           <div
             className="p-4 text-[20px] text-[#000] font-semibold cursor-pointer "
             onClick={() => navigate("/loginType")}
           >
             {user ? (
-              <img
-                className="w-[28px] h-[28px] hover:cursor-pointer"
-                src={UserIcon}
-                alt="contact-icon"
-                onClick={() => navigate("/signup")}
-              />
+              <div className="flex items-center gap-[12px]">
+                {/* <div className="flex flex-col gap-[1px] ">
+                  <div className="text-[20px] font-medium text-[#000]">
+                    Hello!
+                  </div>
+                  <div className="text-[16px] font-medium text-[#000]">
+                    first name
+                  </div>
+                </div> */}
+                <img
+                  className="w-[28px] h-[28px] hover:cursor-pointer"
+                  src={UserIcon}
+                  alt="contact-icon"
+                  onClick={() => navigate("/signup")}
+                />
+              </div>
             ) : (
               <div
-                className="text-[20px] text-[#000] font-semibold cursor-pointer "
-                onClick={() => navigate("/admin")}
+                className="text-[20px] text-[#000] font-semibold cursor-pointer hover:text-[#B88E2F] "
+                onClick={() => navigate("/login")}
               >
                 Login
               </div>
             )}
           </div>
 
-          <img className="w-[28px] h-[28px] " src={search} alt="search-icon" />
+          <img
+            className="w-[28px] h-[28px] cursor-pointer"
+            src={search}
+            alt="search-icon"
+            onClick={() => navigate("/shop/all")}
+          />
           <img className="w-[28px] h-[28px] " src={heart} alt="heart-icon" />
           <img
             className="w-[28px] h-[28px] hover:cursor-pointer mr-[16px] "
