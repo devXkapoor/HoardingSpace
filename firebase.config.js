@@ -5,13 +5,13 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDHF0sr9NOaU8Q04SCAbYv4o8efWhf1pN0",
-  authDomain: "hoardingspace-ecfb3.firebaseapp.com",
-  projectId: "hoardingspace-ecfb3",
-  storageBucket: "hoardingspace-ecfb3.appspot.com",
-  messagingSenderId: "65356186112",
-  appId: "1:65356186112:web:5367088786662cbf904ee5",
-  measurementId: "G-N39SE0C4HE"
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
