@@ -50,17 +50,17 @@ const SignUp = () => {
     }
   };
 
-  const registerWithGoogle = async () => {
-    try {
-      const user = await signInWithPopup(auth, googleProvider);
-      toast.success("User Registered Succesfully");
-      // alert("User Registered Succesfully");
-    } catch (error) {
-      toast.error(error);
-      // console.log(error.message);
-      // alert(error.message);
-    }
-  };
+  // const registerWithGoogle = async () => {
+  //   try {
+  //     const user = await signInWithPopup(auth, googleProvider);
+  //     toast.success("User Registered Succesfully");
+  //     // alert("User Registered Succesfully");
+  //   } catch (error) {
+  //     toast.error(error);
+  //     // console.log(error.message);
+  //     // alert(error.message);
+  //   }
+  // };
 
   const Logout = async () => {
     await signOut(auth);
@@ -180,7 +180,7 @@ const SignUp = () => {
               </div>
 
               {/* signup with google */}
-              <div className="flex w-full  justify-between items-center">
+              {/* <div className="flex w-full  justify-between items-center">
                 <div className="h-[2px] min-w-[200px] bg-[#66666640] ml-[12px]" />
                 <div className="text-[20px] text-[#333] font-[400]">OR</div>
                 <div className="h-[2px] min-w-[200px] bg-[#66666640] mr-[12px]" />
@@ -190,7 +190,7 @@ const SignUp = () => {
                 src={LoginIcon}
                 alt="goofle signin"
                 onClick={registerWithGoogle}
-              />
+              /> */}
             </div>
           </div>
         </div>

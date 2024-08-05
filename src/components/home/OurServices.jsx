@@ -55,7 +55,7 @@ const OurServices = () => {
     },
     {
       img: img2,
-      text: "Digital BillBoard",
+      text: "Transit Media",
     },
     {
       img: img3,
@@ -89,7 +89,6 @@ const OurServices = () => {
             <ServicesItems key={key} img={items.img} name={items.text} />
           ))}
         </Slider>
-        \{" "}
       </div>
     </>
   );

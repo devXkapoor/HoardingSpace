@@ -1,3 +1,5 @@
+// THIS COMPONENT IS SCRAP. NOT USED IN ANY PLACE IN THIS REPOSITORY
+
 import React from "react";
 import Button from "../global/Button";
 import { db, storage } from "../../../firebase.config";

@@ -2,7 +2,7 @@ import Dropdown from "../global/Dropdown";
 import PageType from "../global/PageType";
 import AdvertiseItem from "../home/AdvertiseItem";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 
 // firebase -->
@@ -10,9 +10,13 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../firebase.config";
 
 const Shop = () => {
+  const { id } = useParams();
+
   const [data, setdata] = useState([]);
   let [color, setColor] = useState("#ffba08");
   let [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState(id);
+  const [media, setMedia] = useState(id);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,12 +42,22 @@ const Shop = () => {
     <>
       <div className="flex flex-col items-center justify-center w-full \">
         <PageType page="Outdore Advertisement" />
-        <div className="flex justify-center gap-[64px] w-full bg-[#F9F1E7] py-[24px]  ">
-          <Dropdown name="Location" />
-          <Dropdown name="Ad Option" />
-          <Dropdown name="Media Type" />
-          <Dropdown name="Tags" />
-          <Dropdown name="LIT/ NONLIT" />
+        <div className="flex justify-center gap-[4px] w-full my-[52px]  ">
+          <input
+            className="h-[56px] w-[40%] border-[1px] border-[#66666659] pl-[12px] rounded-md "
+            type="text"
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="eg- Billboard"
+
+            // value={price}
+          />
+
+          <button
+            onClick={() => setMedia(search)}
+            className="  text-[18px] text-[#FFF] bg-[#B88E2F] hover:bg-[#a37c20] w-[100px] h-[54px] font-[600] cursor-pointer rounded-md"
+          >
+            Search
+          </button>
         </div>
         {/* <div className="flex flex-wrap gap-[32px] w-[75%] mt-[46px]"> */}
         {loading ? (
@@ -58,17 +72,24 @@ const Shop = () => {
           />
         ) : (
           <div className="flex justify-center items-center w-full ">
-            <div className="flex flex-wrap gap-[40px] max-w-[78%] mt-[46px] p-6">
-              {data.map((item, key) => (
-                <AdvertiseItem
-                  key={key}
-                  heading={item.type}
-                  text={item.location}
-                  price={item.monthlyprice}
-                  img={item.img}
-                  id={item.id}
-                />
-              ))}
+            <div className="flex flex-wrap gap-[48px] max-w-[85%] mt-[46px] pl-12 mb-[56px]">
+              {media === "all" ? setMedia("") : ""}
+              {data
+                .filter((item) => {
+                  return media.toLowerCase() === item.type.toLowerCase()
+                    ? item
+                    : item.type.toLowerCase().includes(media.toLowerCase());
+                })
+                .map((item, key) => (
+                  <AdvertiseItem
+                    key={key}
+                    heading={item.type}
+                    text={item.location}
+                    price={item.monthlyprice}
+                    img={item.img}
+                    id={item.id}
+                  />
+                ))}
             </div>
           </div>
         )}
@@ -86,7 +107,7 @@ const Shop = () => {
         {/* </div> */}
 
         {/* ---> Pagenation Button  */}
-        <div className="flex flex-col items-center w-full my-[32px]">
+        {/* <div className="flex flex-col items-center w-full my-[32px]">
           <div className="flex justify-center gap-[32px] w-full  ">
             <div className=" flex items-center h-[60px]  rounded-[10px] bg-[#B88E2F] px-[30px] ">
               <p className="text-[20px] text-[#FFF] font-[400] p-0">1</p>
@@ -101,10 +122,8 @@ const Shop = () => {
               <p className="text-[20px] text-[#000] font-[400] p-0">NEXT </p>
             </div>
           </div>
-          {/* <div className="text-[16px] text-[#000] font-[400] my-[20px] ">
-            Showing 1-16 of 32 results
-          </div> */}
-        </div>
+          
+        </div> */}
       </div>
     </>
   );
