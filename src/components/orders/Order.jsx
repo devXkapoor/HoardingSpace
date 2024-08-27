@@ -48,19 +48,32 @@ const Order = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center w-full">
+        <PageType page="Cart" />
+
+        <ClipLoader
+          className="my-[84px]"
+          color={color}
+          loading={loading}
+          // cssOverride={override}
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
+  }
+
   return (
     <>
-      {loading ? (
-        <div className="flex flex-col items-center justify-center w-full">
-          <ClipLoader
-            className="my-[84px]"
-            color={color}
-            loading={loading}
-            // cssOverride={override}
-            size={100}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
+      {data.length === 0 ? (
+        <div className="flex flex-col items-center justify-start w-full mb-[138px]">
+          <PageType page="Order" />
+          <div className="flex w-full justify-center text-[24px] font-semibold my-[84px] pb-[56px]">
+            You haven't placed any order yet!!
+          </div>
         </div>
       ) : (
         <div className="flex flex-col items-center justify-start w-full mb-[138px]">

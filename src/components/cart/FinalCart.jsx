@@ -85,12 +85,16 @@ const FinalCart = () => {
     }
   };
 
-  const handleDeleatCart = async (id) => {
+  const handleDeleatCart = async () => {
     try {
-      await deleteDoc(doc(db, id));
-      toast.success("Item deleated successfully");
-      // setLoading(false);
-      navigate("/");
+      const collectionRef = collection(db, `${user.uid}`);
+      const querySnapshot = await getDocs(collectionRef);
+
+      for (const documentSnapshot of querySnapshot.docs) {
+        const docRef = doc(db, `${user.uid}`, documentSnapshot.id);
+        await deleteDoc(docRef); // Delete each document one by one
+        console.log(`Deleted document with ID: ${documentSnapshot.id}`);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -101,13 +105,10 @@ const FinalCart = () => {
   const CreateOrder = async (cartdata, userData) => {
     try {
       const ordersCollectionRef = collection(db, "Orders");
-      // Create a new order document with auto-generated ID
       const newOrderDocRef = doc(ordersCollectionRef, `User${user.uid}`);
 
       await setDoc(newOrderDocRef, userData);
-      // console.log("getting userdata in function ", userData);
 
-      // Add each cart item as a document in the 'cartItems' subcollection
       const cartItemsSubcollectionRef = collection(
         newOrderDocRef,
         `OrderUser${user.uid}`
@@ -124,16 +125,19 @@ const FinalCart = () => {
           city: item.city,
           img: item.img,
           title: item.title,
+          contactNumber: item.contactNumber,
 
           // quantity: item.quantity,
         });
       });
       // Wait for all cart items to be added
       await Promise.all(cartItemsPromises);
+      handleDeleatCart();
+    } catch (error) {
+      console.error(error);
+    } finally {
       toast.success("Order has been placed successfully!");
       navigate("/orders");
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -160,119 +164,134 @@ const FinalCart = () => {
       <PageType page="Cart" />
 
       {user ? (
-        <div className="flex w-full justify-center gap-[68px] mt-[68px]">
-          <div className="flex flex-col w-auto gap-[20px]">
-            <div className="flex items-center w-full bg-[#F9F1E7] h-[55px]">
-              <div className="text-[#000000] text-[16px] font-[700] ml-[16px]">
-                Total Items: 0{cartdata.length}
-              </div>
+        <div>
+          {cartdata.length === 0 ? (
+            <div className="flex w-full justify-center text-[24px] font-semibold my-[84px] pb-[140px]">
+              Your Cart is Empty!!
             </div>
-            {cartdata.map((item, index) => (
-              <>
-                <div
-                  className="flex flex-col gap-[16px] w-[800px] p-4 shadow-md rounded-xl "
-                  key={index}
-                >
-                  <div className="flex justify-between w-full ">
-                    <div className="text-[16px] text-[#000] font-[500] ">
-                      {item.title}
-                    </div>
-                    <img
-                      className=" cursor-pointer"
-                      onClick={() => {
-                        DeleatItem(item.id);
-                        // setLoading(true);
-                      }}
-                      src={deleat}
-                      alt="deleat icon"
-                    />
-                  </div>
-                  {/*  */}
-                  <div className="flex justify-center items-center gap-[24px] w-full py-[4px]">
-                    <img
-                      className="h-[200px] w-[200px] object-cover "
-                      src={item.img}
-                      alt="image"
-                    />
-                    <div className="flex flex-col gap-[12px]">
-                      <div className="flex justify-start gap-[96px]">
-                        <Text text={`${item.type}`} head="Type" />
-                        <Text text={` ₹ ${item.perdayprice}`} head="Per Day" />
-                        <Text text={` ₹ ${item.monthlyprice}`} head="Monthly" />
-                      </div>
-                      <div className="flex justify-between ">
-                        <div className="flex flex-col items-center gap-[14px]">
-                          <div className="text-[16px] text-[#9F9F9F] font-[400]">
-                            Calender
-                          </div>
-
-                          <img src={calender} alt="calender icon" />
-                        </div>
-                        <Text head="Start Date" text="29/05/24" />
-                        <Text head="End Date" text="02/06/24" />
-                        <div className="flex items-start flex-col gap-[16px] ">
-                          <div className="text-[16px] text-[#000] font-[500]">
-                            Total Days
-                          </div>
-                          <div className="text-[16px] text-[#000] font-[500]">
-                            5
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex justify-between gap-[52px]">
-                        <Text
-                          head="Origional Price"
-                          text={`₹ ${item.monthlyprice}`}
-                        />
-                        <Text head="After Discount" text="₹ 24100" />
-                        <Text
-                          className="mr-[52px]"
-                          head="GST (18%)"
-                          text="₹ 45890"
-                        />
-                        <div className="flex items-start flex-col gap-[16px]">
-                          <div className="text-[16px] text-[#000] font-[500] mr-[38px]">
-                            Total
-                          </div>
-                          <div className="text-[16px] text-[#000] font-[700]">
-                            ₹ {item.monthlyprice}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+          ) : (
+            <div className="flex w-full justify-center gap-[68px] mt-[68px]">
+              <div className="flex flex-col w-auto gap-[20px]">
+                <div className="flex items-center w-full bg-[#F9F1E7] h-[55px]">
+                  <div className="text-[#000000] text-[16px] font-[700] ml-[16px]">
+                    Total Items: 0{cartdata.length}
                   </div>
                 </div>
-              </>
-            ))}
-          </div>
-          {/* <CartTotal /> */}
-          <div className="flex flex-col p-[16px] items-center max-h-[400px] w-[400px] bg-[#F9F1E7] ">
-            <div className="text-[32px] font-[600] text-[#000]">Cart Total</div>
-            <div className="flex flex-col items-center justify-center my-[46px] w-full gap-[28px] ">
-              <div className="flex  justify-center gap-[46px] w-full ">
-                <a className="text-[16px] text-[#000] font-[500]">Subtotal</a>
-                <a className="text-[16px] text-[#9F9F9F] font-[400]">
-                  ₹ 25.00.000
-                </a>
-              </div>
-              <div className="flex justify-center gap-[46px] w-full ">
-                <a className="text-[16px] text-[#000] font-[500]">Total</a>
-                <a className="text-[20px] text-[#B88E2F] font-[500]">
-                  ₹ 25.00.000
-                </a>
-              </div>
-            </div>
+                {cartdata.map((item, index) => (
+                  <>
+                    <div
+                      className="flex flex-col gap-[16px] w-[800px] p-4 shadow-md rounded-xl "
+                      key={index}
+                    >
+                      <div className="flex justify-between w-full ">
+                        <div className="text-[16px] text-[#000] font-[500] ">
+                          {item.title}
+                        </div>
+                        <img
+                          className=" cursor-pointer"
+                          onClick={() => {
+                            DeleatItem(item.id);
+                            // setLoading(true);
+                          }}
+                          src={deleat}
+                          alt="deleat icon"
+                        />
+                      </div>
+                      {/*  */}
+                      <div className="flex justify-center items-center gap-[24px] w-full py-[4px]">
+                        <img
+                          className="h-[200px] w-[200px] object-cover "
+                          src={item.img}
+                          alt="image"
+                        />
+                        <div className="flex flex-col gap-[12px]">
+                          <div className="flex justify-start gap-[96px]">
+                            <Text text={`${item.type}`} head="Type" />
+                            <Text
+                              text={` ₹ ${item.perdayprice}`}
+                              head="Per Day"
+                            />
+                            <Text
+                              text={` ₹ ${item.monthlyprice}`}
+                              head="Monthly"
+                            />
+                          </div>
+                          <div className="flex justify-between ">
+                            <div className="flex flex-col items-center gap-[14px]">
+                              <div className="text-[16px] text-[#9F9F9F] font-[400]">
+                                Calender
+                              </div>
 
-            <div
-              className="py-[16px] w-[210px]"
-              onClick={() => {
-                CreateOrder(cartdata, userData);
-                navigate("/orders");
-              }}
-            >
-              <Button type="plain" name="PLACE  ORDER" />
-            </div>
-            {/* 
+                              <img src={calender} alt="calender icon" />
+                            </div>
+                            <Text head="Start Date" text="29/05/24" />
+                            <Text head="End Date" text="02/06/24" />
+                            <div className="flex items-start flex-col gap-[16px] ">
+                              <div className="text-[16px] text-[#000] font-[500]">
+                                Total Days
+                              </div>
+                              <div className="text-[16px] text-[#000] font-[500]">
+                                5
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex justify-between gap-[52px]">
+                            <Text
+                              head="Origional Price"
+                              text={`₹ ${item.monthlyprice}`}
+                            />
+                            <Text head="After Discount" text="₹ 24100" />
+                            <Text
+                              className="mr-[52px]"
+                              head="GST (18%)"
+                              text="₹ 45890"
+                            />
+                            <div className="flex items-start flex-col gap-[16px]">
+                              <div className="text-[16px] text-[#000] font-[500] mr-[38px]">
+                                Total
+                              </div>
+                              <div className="text-[16px] text-[#000] font-[700]">
+                                ₹ {item.monthlyprice}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                ))}
+              </div>
+              {/* <CartTotal /> */}
+              <div className="flex flex-col p-[16px] items-center max-h-[400px] w-[400px] bg-[#F9F1E7] ">
+                <div className="text-[32px] font-[600] text-[#000]">
+                  Cart Total
+                </div>
+                <div className="flex flex-col items-center justify-center my-[46px] w-full gap-[28px] ">
+                  <div className="flex  justify-center gap-[46px] w-full ">
+                    <a className="text-[16px] text-[#000] font-[500]">
+                      Subtotal
+                    </a>
+                    <a className="text-[16px] text-[#9F9F9F] font-[400]">
+                      ₹ 25.00.000
+                    </a>
+                  </div>
+                  <div className="flex justify-center gap-[46px] w-full ">
+                    <a className="text-[16px] text-[#000] font-[500]">Total</a>
+                    <a className="text-[20px] text-[#B88E2F] font-[500]">
+                      ₹ 25.00.000
+                    </a>
+                  </div>
+                </div>
+
+                <div
+                  className="py-[16px] w-[210px]"
+                  onClick={() => {
+                    CreateOrder(cartdata, userData);
+                  }}
+                >
+                  <Button type="plain" name="PLACE  ORDER" />
+                </div>
+                {/* 
             <div
               className="text-[20px] text-[#111] font-[400] py-[16px] px-[68px] border-[2px] border-[#000] hover:bg-[#fce7ce] cursor-pointer"
               onClick={() => {
@@ -282,12 +301,14 @@ const FinalCart = () => {
             >
               Proceed To Buy
             </div> */}
-          </div>
-          {/*  */}
+              </div>
+              {/*  */}
+            </div>
+          )}
         </div>
       ) : (
         <div className="flex w-full justify-center text-[24px] font-semibold my-[84px] pb-[56px]">
-          Please log in to see your cart
+          Please log in to see your cart!!
         </div>
       )}
     </>
