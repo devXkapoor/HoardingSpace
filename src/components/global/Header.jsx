@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import logo from "../../assets/global/Logo.svg";
 import search from "../../assets/global/SearchIcon.svg";
 import cart from "../../assets/global/CartIcon.svg";
-import heart from "../../assets/global/Heart.svg";
+import orders from "../../assets/global/shopping-bag.svg";
 import UserIcon from "../../assets/UserIcon.png";
 import { Link, useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
@@ -44,6 +44,12 @@ const Header = () => {
           >
             Contact
           </Link>
+          {/* <Link
+            className="text-[16px] text-[#000] font-[500] hover:text-[#B88E2F]"
+            to="/orders"
+          >
+            Orders
+          </Link> */}
         </div>
         {/* icons */}
         <div className="flex items-center gap-[28px] mr-[24px]">
@@ -84,12 +90,18 @@ const Header = () => {
             alt="search-icon"
             onClick={() => navigate("/shop/all")}
           />
-          <img className="w-[28px] h-[28px] " src={heart} alt="heart-icon" />
+
           <img
-            className="w-[28px] h-[28px] hover:cursor-pointer mr-[16px] "
+            className="w-[28px] h-[28px] cursor-pointer  "
             src={cart}
             alt="cart-icon"
             onClick={() => navigate(`/carts`)}
+          />
+          <img
+            className="w-[28px] h-[28px] cursor-pointer"
+            src={orders}
+            alt="heart-icon"
+            onClick={() => navigate("/orders")}
           />
         </div>
       </div>

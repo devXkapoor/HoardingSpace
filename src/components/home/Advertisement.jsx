@@ -46,6 +46,8 @@ const Advertisement = () => {
               text={item.location}
               price={item.monthlyprice}
               img={item.img}
+              discount={item.discount}
+              discountPerc={item.discountPerc}
               id={item.id}
             />
           ))}

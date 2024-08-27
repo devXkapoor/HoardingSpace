@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import PageType from "../global/PageType";
 import CustomInput from "../global/CustomInput";
 import Button from "../global/Button";
 import location from "../../assets/global/LocationIcon.svg";
 import call from "../../assets/global/Callicon.svg";
 import clock from "../../assets/global/Clock.svg";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../../firebase.config";
+import { useNavigate } from "react-router-dom";
 
 const data = [
   {
@@ -28,6 +31,27 @@ const data = [
 ];
 
 const Contact = () => {
+  const navigate = useNavigate();
+  const [city, setCity] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [number, setNumber] = useState("");
+  const [message, setMessage] = useState("");
+
+  const SendMessage = async () => {
+    try {
+      const res = await addDoc(collection(db, "Messages"), {
+        name,
+        email,
+        number,
+        city,
+        message,
+      });
+      console.log(res);
+    } catch (error) {
+      console.log("Error in sending message", error);
+    }
+  };
   return (
     <>
       <div className="flex flex-col items-center w-full">
@@ -43,7 +67,7 @@ const Contact = () => {
           </div>
         </div>
 
-        <div className="flex w-full justify-center gap-[160px]">
+        <div className="flex w-full justify-center gap-[120px]">
           {/*  */}
           <div className="flex flex-col gap-[40px] mt-[16px]">
             {data.map((item, key) => (
@@ -77,27 +101,46 @@ const Contact = () => {
               head="Name"
               type="text"
               placeholder="Enter full name"
-              className="h-[75px] w-[530px]"
+              onChange={(e) => setName(e.target.value)}
+              className="h-[55px] w-[530px]"
             />
             <CustomInput
               head="Email Adress"
               type="email"
               placeholder="abc@gmail.com"
-              className="h-[75px] w-[530px]"
+              onChange={(e) => setEmail(e.target.value)}
+              className="h-[55px] w-[530px]"
             />
             <CustomInput
               head="Contact"
               type="text"
               placeholder="+91 00000000"
-              className="h-[75px] w-[530px]"
+              onChange={(e) => setNumber(e.target.value)}
+              className="h-[55px] w-[530px]"
+            />
+            <CustomInput
+              head="City"
+              type="text"
+              placeholder="Mumbai"
+              onChange={(e) => setCity(e.target.value)}
+              className="h-[55px] w-[530px]"
             />
             <CustomInput
               head="Message Us"
               type="text"
               placeholder="Message...."
+              onChange={(e) => setMessage(e.target.value)}
               className="h-[120px] w-[530px]"
             />
-            <div className="h-[55px] w-[240px] my-[32px]">
+
+            <div
+              className="h-[55px] w-[240px] my-[32px]"
+              onClick={() => {
+                SendMessage();
+                console.log("Message send");
+                navigate("/about");
+              }}
+            >
               <Button name="Send" type="plain" />
             </div>
           </div>

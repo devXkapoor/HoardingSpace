@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CartTotal = () => {
   return (
@@ -15,7 +16,10 @@ const CartTotal = () => {
         </div>
       </div>
 
-      <div className="text-[20px] text-[#111] font-[400] py-[16px] px-[68px] border-[2px] border-[#000] hover:bg-[#fce7ce] cursor-pointer">
+      <div
+        className="text-[20px] text-[#111] font-[400] py-[16px] px-[68px] border-[2px] border-[#000] hover:bg-[#fce7ce] cursor-pointer"
+        onClick={() => navigate("/orders")}
+      >
         Proceed To Buy
       </div>
     </div>

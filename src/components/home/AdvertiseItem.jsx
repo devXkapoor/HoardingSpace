@@ -25,8 +25,20 @@ const AdvertiseItem = (props) => {
             <div className="text-[16px] text-[#898989] font-[500]  ">
               {props.text}
             </div>
-            <div className="text-[20px] text-[#3A3A3A] font-[600]">
-              ₹ {props.price}
+            <div className="flex w-full justify-start gap-[12px]">
+              <div className="flex items-center ">
+                <div className="h-[1px] bg-black z-20 w-[70px] absolute"></div>
+                <div className="text-[20px] text-[#3A3A3A] font-[600] z-10 ">
+                  ₹{props.price}
+                </div>
+              </div>
+              <span class="flex items-center absolute top-0 right-0 h-[50px] w-[50px] bg-[#E97171] text-[16px] text-white text-xs font-bold px-3 py-1 rounded-full -translate-x-[20px] translate-y-[20px]">
+                -{props.discountPerc}%
+              </span>
+
+              <div className="text-[20px] text-[#3A3A3A] font-[600]">
+                ₹ {props.discount}
+              </div>
             </div>
           </div>
         </div>
