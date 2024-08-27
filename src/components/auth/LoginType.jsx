@@ -31,14 +31,14 @@ const LoginType = () => {
         <div className="flex flex-col w-full gap-[34px] mt-[100px] mb-[195px]">
           <div className="w-full flex flex-col ">
             <div className="flex w-full justify-center my-[84px] ">
-              <div className="flex flex-col gap-[16px] rounded-md border-[1px] w-[30%] text-center p-[18px] shadow-lg">
+              <div className="flex flex-col gap-[16px] rounded-md border-[1px] border-t-[#B88E2F] border-t-[2px] w-[30%] text-center p-[18px] shadow-lg">
                 <div className="text-[24px] text-[#111] font-[600]">
                   You Loged-in with Email :
                 </div>
                 <div>{user?.email}</div>
 
                 <button
-                  className="p-[8px] border-[2px] hover:bg-slate-400 w-[100px]"
+                  className="p-[8px] border-[1px] border-[#B88E2F] text-[#B88E2F] hover:bg-[#edecec] w-[100px]"
                   onClick={() => {
                     Logout();
                   }}

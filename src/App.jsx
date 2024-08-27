@@ -16,6 +16,7 @@ import Cart from "./components/cart/Cart";
 import AdvertiserSignUp from "./components/auth/advertisers/AdvertiserSignUp";
 import AdvertiserLogin from "./components/auth/advertisers/AdvertiserLogin";
 import LoginType from "./components/auth/LoginType";
+import Order from "./components/orders/Order";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             <Route path="/advertiserSignup" element={<AdvertiserSignUp />} />
             <Route path="/advertiserLogin" element={<AdvertiserLogin />} />
             <Route path="/loginType" element={<LoginType />} />
+            <Route path="/orders" element={<Order />} />
           </Routes>
           <Footer />
         </BrowserRouter>

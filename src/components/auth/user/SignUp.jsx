@@ -22,6 +22,7 @@ const SignUp = () => {
   const [userType, setuserType] = useState("user");
   const [lname, setLname] = useState("");
   const [fname, setFname] = useState("");
+  const [contact, setContact] = useState("");
 
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
@@ -34,7 +35,7 @@ const SignUp = () => {
   const register = async () => {
     try {
       const user = await createUserWithEmailAndPassword(auth, Email, Password);
-      const data = { userType, fname, lname, Email, Password };
+      const data = { userType, fname, lname, Email, Password, contact };
       console.log("data", data, user?.user?.uid);
       const res = await setDoc(doc(db, "UserData", user?.user?.uid), data);
       console.log("res", res);
@@ -143,6 +144,18 @@ const SignUp = () => {
                   type="email"
                   placeholder="Enter your Email... "
                   onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              {/*  */}
+              <div className="flex flex-col gap-[8px] items-start">
+                <div className="text-[16px] text-[#666666] font-[400]">
+                  Contact Number
+                </div>
+                <input
+                  className="h-[56px] min-w-[580px] border-[1px] rounded-[4px] border-[#66666659] pl-[12px] "
+                  type="text"
+                  placeholder="+91 000000"
+                  onChange={(e) => setContact(e.target.value)}
                 />
               </div>
               {/*  */}
