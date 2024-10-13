@@ -15,6 +15,7 @@ import { db } from "../../../../firebase.config";
 import Button from "../../global/Button";
 import LoginIcon from "../../../assets/global/Googlelogin.svg";
 import { toast } from "react-toastify";
+import TermsAndConditions from "../../global/CompanyTerms";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -27,6 +28,8 @@ const SignUp = () => {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [user, setuser] = useState({});
+  // const [toggle, setToggle] = useState(false);
+  let isread = false;
 
   onAuthStateChanged(auth, (currentuser) => {
     setuser(currentuser);
@@ -35,7 +38,15 @@ const SignUp = () => {
   const register = async () => {
     try {
       const user = await createUserWithEmailAndPassword(auth, Email, Password);
-      const data = { userType, fname, lname, Email, Password, contact };
+      const data = {
+        userType,
+        fname,
+        lname,
+        Email,
+        Password,
+        contact,
+        isRead: isread,
+      };
       console.log("data", data, user?.user?.uid);
       const res = await setDoc(doc(db, "UserData", user?.user?.uid), data);
       console.log("res", res);
@@ -50,18 +61,6 @@ const SignUp = () => {
       // console.log(error.message);
     }
   };
-
-  // const registerWithGoogle = async () => {
-  //   try {
-  //     const user = await signInWithPopup(auth, googleProvider);
-  //     toast.success("User Registered Succesfully");
-  //     // alert("User Registered Succesfully");
-  //   } catch (error) {
-  //     toast.error(error);
-  //     // console.log(error.message);
-  //     // alert(error.message);
-  //   }
-  // };
 
   const Logout = async () => {
     await signOut(auth);
@@ -97,9 +96,9 @@ const SignUp = () => {
       ) : (
         <div className="flex w-full justify-center my-[84px]">
           <div className="flex flex-col items-center gap-[32px] p-[16px]">
-            <div className="flex flex-col gap-[32px] p-[16px] ">
+            <div className="flex flex-col items-center gap-[32px] p-[16px] ">
               {/*  */}
-              <div className="flex justify-between items-center  w-full">
+              <div className="flex justify-between items-center w-full px-6">
                 <div className="text-[32px] text-[#333] font-[600]">
                   Create an account
                 </div>
@@ -171,8 +170,8 @@ const SignUp = () => {
                 />
               </div>
               {/*  */}
-              <div className="flex w-full items-center  gap-[8px]">
-                <input
+              {/* <div className="flex w-full items-center  gap-[8px]"> */}
+              {/* <input
                   className="h-[16px] w-[16px] cursor-pointer"
                   type="checkbox"
                 />
@@ -181,10 +180,24 @@ const SignUp = () => {
                   <span className=" underline cursor-pointer">
                     Terms of use and Privacy Policy
                   </span>
+                </div> */}
+              {/* </div> */}
+              <div>
+                <TermsAndConditions />
+              </div>
+              <div className="flex w-full items-center ml-4 gap-[8px]">
+                <input
+                  className="h-[16px] w-[16px] cursor-pointer"
+                  type="checkbox"
+                  // onClick={() => setToggle(!toggle)}
+                />
+                <div className="text-[14px] text-[#333333] font-[400]">
+                  I agree to the terms and conditions
                 </div>
               </div>
 
               <div
+                className="w-full"
                 onClick={() => {
                   register();
                 }}

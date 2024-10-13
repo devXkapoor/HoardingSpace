@@ -104,6 +104,7 @@ const FinalCart = () => {
 
   const CreateOrder = async (cartdata, userData) => {
     try {
+      // const newUserData = [...userData, IsRead: isread];
       const ordersCollectionRef = collection(db, "Orders");
       const newOrderDocRef = doc(ordersCollectionRef, `User${user.uid}`);
 

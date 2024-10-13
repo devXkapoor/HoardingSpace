@@ -5,6 +5,7 @@ import Button from "../global/Button";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../../firebase.config";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const data = [
   {
@@ -28,6 +29,7 @@ const MessageUs = () => {
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
   const [message, setMessage] = useState("");
+  let isread = false;
 
   const SendMessage = async () => {
     try {
@@ -37,9 +39,13 @@ const MessageUs = () => {
         number,
         city,
         message,
+        isRead: isread,
       });
+      toast.success("Message send Successfully");
       console.log(res);
     } catch (error) {
+      toast.error("Error in sending message");
+
       console.log("Error in sending message", error);
     }
   };
