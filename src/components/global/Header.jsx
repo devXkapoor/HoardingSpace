@@ -29,7 +29,10 @@ const Header = () => {
           >
             Home
           </Link>
-          <Link className="text-[16px] text-[#000] font-[500] hover:text-[#B88E2F]">
+          <Link
+            className="text-[16px] text-[#000] font-[500] hover:text-[#B88E2F]"
+            to="/services"
+          >
             Service
           </Link>
           <Link

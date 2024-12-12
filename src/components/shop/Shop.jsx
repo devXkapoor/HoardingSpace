@@ -11,12 +11,13 @@ import { db } from "../../../firebase.config";
 
 const Shop = () => {
   const { id } = useParams();
-
   const [data, setdata] = useState([]);
+  const [filteredData, setFilteredData] = useState(data);
   let [color, setColor] = useState("#ffba08");
   let [loading, setLoading] = useState(false);
   const [search, setSearch] = useState(id);
   const [media, setMedia] = useState(id);
+  const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +30,7 @@ const Shop = () => {
         });
         console.log(datalist);
         setdata(datalist);
+        setFilteredData(datalist);
         setLoading(false);
       } catch (err) {
         console.log(err);
@@ -38,28 +40,110 @@ const Shop = () => {
     console.log(data);
   }, []);
 
+  useEffect(() => {
+    if (search != "all") {
+      const tempData = [...data];
+      setFilteredData(
+        tempData.filter(
+          (item) =>
+            item?.type?.toLowerCase()?.includes(search.toLocaleLowerCase()) ||
+            item?.location
+              ?.toLowerCase()
+              ?.includes(search.toLocaleLowerCase()) ||
+            item?.city?.toLowerCase()?.includes(search.toLocaleLowerCase())
+        )
+      );
+    }
+  }, [data]);
+
+  const searchByQuery = () => {
+    const tempData = [...data];
+
+    setFilteredData(
+      tempData.filter(
+        (item) =>
+          item?.type?.toLowerCase()?.includes(search.toLocaleLowerCase()) ||
+          item?.location?.toLowerCase()?.includes(search.toLocaleLowerCase()) ||
+          item?.city?.toLowerCase()?.includes(search.toLocaleLowerCase()) ||
+          item?.pincode?.toLowerCase()?.includes(search.toLocaleLowerCase())
+      )
+    );
+  };
+
+  const searchByCode = () => {
+    const tempData = [...data];
+
+    setFilteredData(
+      tempData.filter((item) =>
+        item?.itemCode?.toLowerCase()?.includes(search.toLocaleLowerCase())
+      )
+    );
+  };
+
+  // const filteredmedia = data.filter(
+  //   (t) =>
+  //     t.type.toLowerCase().includes(filter.toLowerCase()) ||
+  //     t.city.toLowerCase().includes(filter.toLowerCase())
+  // );
+
   return (
     <>
       <div className="flex flex-col items-center justify-center w-full \">
         <PageType page="Outdore Advertisement" />
-        <div className="flex justify-center gap-[4px] w-full my-[52px]  ">
-          <input
-            className="h-[56px] w-[40%] border-[1px] border-[#66666659] pl-[12px] rounded-md "
-            type="text"
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="eg- Billboard"
 
-            // value={price}
-          />
+        <div className="flex flex-col items-center gap-[4px] w-full ">
+          <div className="flex justify-center gap-[4px] w-full mt-[52px]  ">
+            <input
+              className="h-[56px] w-[40%] border-[1px] border-[#66666659] pl-[12px] rounded-md "
+              type="text"
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="eg- Billboard"
 
-          <button
-            onClick={() => setMedia(search)}
-            className="  text-[18px] text-[#FFF] bg-[#B88E2F] hover:bg-[#a37c20] w-[100px] h-[54px] font-[600] cursor-pointer rounded-md"
-          >
-            Search
-          </button>
+              // value={price}
+            />
+
+            <button
+              onClick={searchByQuery}
+              className="  text-[18px] text-[#FFF] bg-[#B88E2F] hover:bg-[#a37c20] w-[100px] h-[54px] font-[600] cursor-pointer rounded-md"
+            >
+              Search
+            </button>
+          </div>
+          <div className="flex flex-col  w-[47%]  items-start justify-center mt-[24px] ">
+            <div className="flex w-full justify-start items-center ml-2">
+              <input
+                className="h-[14px] w-[14px] cursor-pointer"
+                type="checkbox"
+                onClick={() => setToggle(!toggle)}
+              />
+              <div className="text-[18px] text-[#333333] font-[400] ml-2">
+                Search by code
+              </div>
+            </div>
+            <div className="flex w-full  justify-start my-2  ">
+              {toggle && (
+                <div className="flex w-full ">
+                  <input
+                    className="h-14 w-full border pl-3 rounded-md"
+                    type="text"
+                    onChange={(e) => {
+                      setSearch(e.target.value);
+                      searchByCode();
+                    }}
+                    placeholder="Enter code"
+                  />
+                  <button
+                    // onChange={searchByCode}
+                    onClick={searchByCode}
+                    className="text-lg text-white bg-yellow-600 hover:bg-yellow-500 w-[100px] h-14 font-semibold cursor-pointer rounded-md ml-4"
+                  >
+                    Search
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-        {/* <div className="flex flex-wrap gap-[32px] w-[75%] mt-[46px]"> */}
         {loading ? (
           <ClipLoader
             className="my-[84px]"
@@ -72,60 +156,23 @@ const Shop = () => {
           />
         ) : (
           <div className="flex justify-center items-center w-full ">
-            <div className="flex flex-wrap gap-[48px] max-w-[85%] mt-[46px] pl-12 mb-[56px]">
+            <div className=" grid grid-cols-4 gap-12 max-w-[85%] mt-[46px] mb-[56px]">
               {media === "all" ? setMedia("") : ""}
-              {data
-                .filter((item) => {
-                  return media.toLowerCase() === item.type.toLowerCase()
-                    ? item
-                    : item.type.toLowerCase().includes(media.toLowerCase());
-                })
-                .map((item, key) => (
-                  <AdvertiseItem
-                    key={key}
-                    heading={item.type}
-                    text={item.location}
-                    price={item.monthlyprice}
-                    img={item.img}
-                    discount={item.discount}
-                    discountPerc={item.discountPerc}
-                    id={item.id}
-                  />
-                ))}
+              {filteredData.map((item, key) => (
+                <AdvertiseItem
+                  key={key}
+                  heading={item.type}
+                  text={item.location}
+                  price={item.monthlyprice}
+                  img={item.img}
+                  discount={item.discount}
+                  discountPerc={item.discountPerc}
+                  id={item.id}
+                />
+              ))}
             </div>
           </div>
         )}
-
-        {/* {data.map((item, key) => (
-            <AdvertiseItem
-              key={key}
-              heading={item.type}
-              text={item.location}
-              price={item.monthlyprice}
-              img={item.img}
-              id={item.id}
-            />
-          ))} */}
-        {/* </div> */}
-
-        {/* ---> Pagenation Button  */}
-        {/* <div className="flex flex-col items-center w-full my-[32px]">
-          <div className="flex justify-center gap-[32px] w-full  ">
-            <div className=" flex items-center h-[60px]  rounded-[10px] bg-[#B88E2F] px-[30px] ">
-              <p className="text-[20px] text-[#FFF] font-[400] p-0">1</p>
-            </div>
-            <div className=" flex items-center  h-[60px]  rounded-[10px] bg-[#F9F1E7] px-[30px] ">
-              <p className="text-[20px] text-[#000] font-[400] p-0">2</p>
-            </div>
-            <div className=" flex items-center h-[60px]  rounded-[10px] bg-[#F9F1E7] px-[30px] ">
-              <p className="text-[20px] text-[#000] font-[400] p-0">3</p>
-            </div>
-            <div className=" flex items-center h-[60px]  rounded-[10px] bg-[#F9F1E7] px-[30px] ">
-              <p className="text-[20px] text-[#000] font-[400] p-0">NEXT </p>
-            </div>
-          </div>
-          
-        </div> */}
       </div>
     </>
   );

@@ -65,6 +65,14 @@ const OurServices = () => {
       img: img1,
       text: "BillBoard",
     },
+    {
+      img: img2,
+      text: "Railway Media",
+    },
+    {
+      img: img3,
+      text: "Bus Shelter",
+    },
   ];
 
   var settings = {

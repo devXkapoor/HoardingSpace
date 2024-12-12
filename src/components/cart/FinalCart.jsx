@@ -28,6 +28,8 @@ const FinalCart = () => {
   let [color, setColor] = useState("#ffba08");
   let [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [isRead, setIsRead] = useState(false);
+  const [orderStatus, setOrderStatus] = useState("Pending");
 
   // const { id } = useParams(); //param got id from url so url change first then we grab id from useparams
 
@@ -61,7 +63,7 @@ const FinalCart = () => {
     let datalist = [];
     try {
       setLoading(true);
-      const querySnapshot = await getDocs(collection(db, `${user.uid}`));
+      const querySnapshot = await getDocs(collection(db, `Cart${user.uid}`));
       querySnapshot.forEach((doc) => {
         datalist.push({ id: doc.id, ...doc.data() });
       });
@@ -76,7 +78,7 @@ const FinalCart = () => {
   };
   const DeleatItem = async (id) => {
     try {
-      await deleteDoc(doc(db, `${user.uid}`, id));
+      await deleteDoc(doc(db, `Cart${user.uid}`, id));
       toast.success("Item deleated successfully");
       // setLoading(false);
       navigate("/");
@@ -87,11 +89,11 @@ const FinalCart = () => {
 
   const handleDeleatCart = async () => {
     try {
-      const collectionRef = collection(db, `${user.uid}`);
+      const collectionRef = collection(db, `Cart${user.uid}`);
       const querySnapshot = await getDocs(collectionRef);
 
       for (const documentSnapshot of querySnapshot.docs) {
-        const docRef = doc(db, `${user.uid}`, documentSnapshot.id);
+        const docRef = doc(db, `Cart${user.uid}`, documentSnapshot.id);
         await deleteDoc(docRef); // Delete each document one by one
         console.log(`Deleted document with ID: ${documentSnapshot.id}`);
       }
@@ -107,8 +109,17 @@ const FinalCart = () => {
       // const newUserData = [...userData, IsRead: isread];
       const ordersCollectionRef = collection(db, "Orders");
       const newOrderDocRef = doc(ordersCollectionRef, `User${user.uid}`);
+      const newOrderData = {
+        contact: userData.contact,
+        fname: userData.fname,
+        lname: userData.lname,
+        email: userData.email,
+        isRead,
+        orderStatus,
+      };
+      await setDoc(newOrderDocRef, newOrderData);
 
-      await setDoc(newOrderDocRef, userData);
+      // await setDoc(newOrderDocRef, [...userData, isRead, orderStatus]);
 
       const cartItemsSubcollectionRef = collection(
         newOrderDocRef,
