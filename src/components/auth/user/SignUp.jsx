@@ -15,53 +15,59 @@ import { db } from "../../../../firebase.config";
 import Button from "../../global/Button";
 import LoginIcon from "../../../assets/global/Googlelogin.svg";
 import { toast } from "react-toastify";
+import TermsAndConditions from "../../global/CompanyTerms";
 
 const SignUp = () => {
   const navigate = useNavigate();
 
-  const [userType, setuserType] = useState("user");
+  // const [userType, setuserType] = useState("user");
   const [lname, setLname] = useState("");
   const [fname, setFname] = useState("");
   const [contact, setContact] = useState("");
 
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [user, setuser] = useState({});
+  // const [toggle, setToggle] = useState(false);
+  // let isread = false;
 
   onAuthStateChanged(auth, (currentuser) => {
     setuser(currentuser);
   });
 
+  const RegisterWithGoogle = async () => {
+    console.log("Google runing");
+    try {
+      const user = await signInWithPopup(auth, googleProvider);
+      navigate("/update-profile");
+      // toast.success("You have Loged-in by google");
+      console.log(user);
+    } catch (error) {
+      toast.error(error);
+      // alert("wromg ceredentails");
+    }
+  };
+
   const register = async () => {
     try {
       const user = await createUserWithEmailAndPassword(auth, Email, Password);
-      const data = { userType, fname, lname, Email, Password, contact };
+      const data = {
+        fname,
+        lname,
+        email,
+        password,
+        contact,
+        // isRead: isread,
+      };
       console.log("data", data, user?.user?.uid);
       const res = await setDoc(doc(db, "UserData", user?.user?.uid), data);
       console.log("res", res);
       toast.success("User Registered Succesfully");
-
-      // alert("User Registered Succesfully");
       navigate("/");
     } catch (error) {
       toast.error(error);
-
-      // alert("Error in creating account!");
-      // console.log(error.message);
     }
   };
-
-  // const registerWithGoogle = async () => {
-  //   try {
-  //     const user = await signInWithPopup(auth, googleProvider);
-  //     toast.success("User Registered Succesfully");
-  //     // alert("User Registered Succesfully");
-  //   } catch (error) {
-  //     toast.error(error);
-  //     // console.log(error.message);
-  //     // alert(error.message);
-  //   }
-  // };
 
   const Logout = async () => {
     await signOut(auth);
@@ -97,9 +103,9 @@ const SignUp = () => {
       ) : (
         <div className="flex w-full justify-center my-[84px]">
           <div className="flex flex-col items-center gap-[32px] p-[16px]">
-            <div className="flex flex-col gap-[32px] p-[16px] ">
+            <div className="flex flex-col items-center gap-[32px] p-[16px] ">
               {/*  */}
-              <div className="flex justify-between items-center  w-full">
+              <div className="flex justify-between items-center w-full px-6">
                 <div className="text-[32px] text-[#333] font-[600]">
                   Create an account
                 </div>
@@ -170,40 +176,38 @@ const SignUp = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              {/*  */}
-              <div className="flex w-full items-center  gap-[8px]">
+
+              {/* </div> */}
+              <div>
+                <TermsAndConditions />
+              </div>
+              <div className="flex w-full items-center ml-4 gap-[8px]">
                 <input
                   className="h-[16px] w-[16px] cursor-pointer"
                   type="checkbox"
+                  // onClick={() => setToggle(!toggle)}
                 />
-                <div className="text-[16px] text-[#333333] font-[400]">
-                  By creating an account, I agree to our{" "}
-                  <span className=" underline cursor-pointer">
-                    Terms of use and Privacy Policy
-                  </span>
+                <div className="text-[14px] text-[#333333] font-[400]">
+                  I agree to the terms and conditions
                 </div>
               </div>
 
-              <div
-                onClick={() => {
-                  register();
-                }}
-              >
+              <div className="w-full" onClick={register}>
                 <Button name="Create an account" type="plain" />
               </div>
 
               {/* signup with google */}
-              {/* <div className="flex w-full  justify-between items-center">
+              <div className="flex w-full  justify-between items-center">
                 <div className="h-[2px] min-w-[200px] bg-[#66666640] ml-[12px]" />
                 <div className="text-[20px] text-[#333] font-[400]">OR</div>
                 <div className="h-[2px] min-w-[200px] bg-[#66666640] mr-[12px]" />
               </div>
               <img
-                className=" cursor-pointer"
+                className=" w-full cursor-pointer"
                 src={LoginIcon}
                 alt="goofle signin"
-                onClick={registerWithGoogle}
-              /> */}
+                onClick={RegisterWithGoogle}
+              />
             </div>
           </div>
         </div>

@@ -27,8 +27,7 @@ const AdvertiseItem = (props) => {
             </div>
             <div className="flex w-full justify-start gap-[12px]">
               <div className="flex items-center ">
-                <div className="h-[1px] bg-black z-20 w-[70px] absolute"></div>
-                <div className="text-[20px] text-[#3A3A3A] font-[600] z-10 ">
+                <div className="text-[20px] text-[#3A3A3A] font-[600] line-through  ">
                   ₹{props.price}
                 </div>
               </div>

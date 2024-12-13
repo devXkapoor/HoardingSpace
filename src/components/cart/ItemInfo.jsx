@@ -47,7 +47,7 @@ const ItemInfo = (props) => {
 
   const SubmitItem = async () => {
     try {
-      const cartRef = doc(db, `${user.uid}`, id);
+      const cartRef = doc(db, `Cart${user.uid}`, id);
       await setDoc(cartRef, data);
 
       // console.log("func called");

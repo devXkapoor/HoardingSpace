@@ -30,20 +30,20 @@ const Login = () => {
     }
   };
 
-  // const LoginWithGoogle = async () => {
-  //   try {
-  //     const user = await signInWithPopup(auth, googleProvider);
-  //     toast.success("You have Loged-in by google");
-  //     navigate("/");
-  //     console.log(user);
-  //   } catch (error) {
-  //     toast.error(error);
-  //     // alert("wromg ceredentails");
-  //   }
-  // };
-  // const Logout = async () => {
-  //   await signOut(auth);
-  // };
+  const LoginWithGoogle = async () => {
+    try {
+      const user = await signInWithPopup(auth, googleProvider);
+      toast.success("You have Loged-in by google");
+      navigate("/");
+      console.log(user);
+    } catch (error) {
+      toast.error(error);
+      // alert("wromg ceredentails");
+    }
+  };
+  const Logout = async () => {
+    await signOut(auth);
+  };
 
   return (
     <>
@@ -62,6 +62,21 @@ const Login = () => {
                 Sign up
               </span>
             </div>
+          </div>
+
+          {/*  */}
+
+          {/* Login by google */}
+          <img
+            className=" w-full  cursor-pointer"
+            src={LoginIcon}
+            alt="goofle signin"
+            onClick={() => LoginWithGoogle()}
+          />
+          <div className="flex w-full  justify-between items-center">
+            <div className="h-[2px] min-w-[200px] bg-[#66666640] ml-[12px]" />
+            <div className="text-[20px] text-[#333] font-[400]">OR</div>
+            <div className="h-[2px] min-w-[200px] bg-[#66666640] mr-[12px]" />
           </div>
 
           {/*  */}
