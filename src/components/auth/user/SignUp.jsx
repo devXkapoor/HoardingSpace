@@ -50,7 +50,7 @@ const SignUp = () => {
 
   const register = async () => {
     try {
-      const user = await createUserWithEmailAndPassword(auth, Email, Password);
+      const user = await createUserWithEmailAndPassword(auth, email, password);
       const data = {
         fname,
         lname,
