@@ -115,8 +115,12 @@ const Order = () => {
                     title={item.title}
                     type={item.type}
                     img={item.img}
-                    monthlyprice={item.price}
+                    monthlyprice={item.monthlyprice}
                     perdayprice={item.perdayprice}
+                    discount={item.discount}
+                    illuminate={item.illuminate}
+                    size={item.size}
+                    discountPerc={item.discountPerc}
                   />
                 </div>
               ))}
@@ -126,9 +130,9 @@ const Order = () => {
               <div className="text-[16px] text-center font-medium ">
                 You can Buy when we confirm the availability of your orders!
               </div>
-              <div className="font-semibold py-2 px-6  h-10  rounded-xl border-2 ">
+              <div className="flex items-center font-semibold py-2 px-6  h-10  rounded-xl border-2 ">
                 <div
-                  className={` ${orderDetails?.orderStatus == "Accepted" ? "text-[#20b75f] font-bold " : " text-[#B88E2F]"}`}
+                  className={` ${orderDetails?.orderStatus == "Accepted" ? "text-[#20b75f] font-bold" : " text-[#B88E2F]"}`}
                 >
                   {orderDetails?.orderStatus}
                 </div>

@@ -131,14 +131,19 @@ const FinalCart = () => {
         const itemDocRef = doc(cartItemsSubcollectionRef);
         return setDoc(itemDocRef, {
           type: item.type,
-          price: item.monthlyprice,
+          // price: item.monthlyprice,
           location: item.location,
           locality: item.locality,
           city: item.city,
           img: item.img,
           title: item.title,
           contactNumber: item.contactNumber,
-
+          illuminate: item.illuminate,
+          size: item.size,
+          monthlyprice: item.monthlyprice,
+          perdayprice: item.perdayprice,
+          discount: item.discount,
+          discountPerc: item.discountPerc,
           // quantity: item.quantity,
         });
       });
@@ -152,6 +157,11 @@ const FinalCart = () => {
       navigate("/orders");
     }
   };
+
+  const totalBill = cartdata.reduce((total, item) => {
+    const price = parseFloat(item.monthlyprice); // Convert price to a number
+    return total + (isNaN(price) ? 0 : price); // Add to total if valid number
+  }, 0);
 
   if (loading) {
     return (
@@ -200,13 +210,9 @@ const FinalCart = () => {
                           {item.title}
                         </div>
                         <img
-                          className=" cursor-pointer"
-                          onClick={() => {
-                            DeleatItem(item.id);
-                            // setLoading(true);
-                          }}
+                          className="h-[18px] w-[18px] hover:h-[20px] hover:w-[20px] cursor-pointer "
                           src={deleat}
-                          alt="deleat icon"
+                          onClick={() => DeleatItem(item.id)}
                         />
                       </div>
                       {/*  */}
@@ -217,18 +223,19 @@ const FinalCart = () => {
                           alt="image"
                         />
                         <div className="flex flex-col gap-[12px]">
-                          <div className="flex justify-start gap-[96px]">
-                            <Text text={`${item.type}`} head="Type" />
-                            <Text
-                              text={` ₹ ${item.perdayprice}`}
-                              head="Per Day"
-                            />
+                          <div className="flex justify-start gap-[76px]">
+                            <Text text={item.type} head="Type" />
+
                             <Text
                               text={` ₹ ${item.monthlyprice}`}
                               head="Monthly"
                             />
+                            <Text
+                              text={` ₹ ${item.perdayprice}`}
+                              head="Per Day"
+                            />
                           </div>
-                          <div className="flex justify-between ">
+                          <div className="flex justify-start gap-[76px] ">
                             <div className="flex flex-col items-center gap-[14px]">
                               <div className="text-[16px] text-[#9F9F9F] font-[400]">
                                 Calender
@@ -236,34 +243,29 @@ const FinalCart = () => {
 
                               <img src={calender} alt="calender icon" />
                             </div>
-                            <Text head="Start Date" text="29/05/24" />
-                            <Text head="End Date" text="02/06/24" />
-                            <div className="flex items-start flex-col gap-[16px] ">
-                              <div className="text-[16px] text-[#000] font-[500]">
-                                Total Days
-                              </div>
-                              <div className="text-[16px] text-[#000] font-[500]">
-                                5
-                              </div>
-                            </div>
-                          </div>
-                          <div className="flex justify-between gap-[52px]">
                             <Text
-                              head="Origional Price"
+                              text={`${item.illuminate}`}
+                              head="Illumination"
+                            />
+                            <Text text={`${item.size}`} head="Size(Sq.Ft)" />
+                          </div>
+                          <div className="flex justify-between gap-[76px]">
+                            <Text
+                              head="Price"
                               text={`₹ ${item.monthlyprice}`}
                             />
-                            <Text head="After Discount" text="₹ 24100" />
+                            <Text head="Discount" text={`₹ ${item.discount}`} />
                             <Text
                               className="mr-[52px]"
-                              head="GST (18%)"
-                              text="₹ 45890"
+                              head="Dicount(%)"
+                              text={`${item.discountPerc} %`}
                             />
                             <div className="flex items-start flex-col gap-[16px]">
-                              <div className="text-[16px] text-[#000] font-[500] mr-[38px]">
+                              <div className="text-[16px] text-[#000] font-[500] mr-[38px] ">
                                 Total
                               </div>
                               <div className="text-[16px] text-[#000] font-[700]">
-                                ₹ {item.monthlyprice}
+                                ₹ {item.monthlyprice} /-
                               </div>
                             </div>
                           </div>
@@ -274,24 +276,27 @@ const FinalCart = () => {
                 ))}
               </div>
               {/* <CartTotal /> */}
-              <div className="flex flex-col p-[16px] items-center max-h-[400px] w-[400px] bg-[#F9F1E7] ">
+              <div className="flex flex-col  items-center gap-[24px] py-[12px] h-[250px] w-[400px] bg-[#F9F1E7] ">
                 <div className="text-[32px] font-[600] text-[#000]">
                   Cart Total
                 </div>
-                <div className="flex flex-col items-center justify-center my-[46px] w-full gap-[28px] ">
-                  <div className="flex  justify-center gap-[46px] w-full ">
+                <div className="flex flex-col items-center justify-center w-full gap-[16px] ">
+                  {/* <div className="flex  justify-center gap-[46px] w-full ">
                     <a className="text-[16px] text-[#000] font-[500]">
                       Subtotal
                     </a>
                     <a className="text-[16px] text-[#9F9F9F] font-[400]">
                       ₹ 25.00.000
                     </a>
-                  </div>
-                  <div className="flex justify-center gap-[46px] w-full ">
-                    <a className="text-[16px] text-[#000] font-[500]">Total</a>
-                    <a className="text-[20px] text-[#B88E2F] font-[500]">
-                      ₹ 25.00.000
+                  </div> */}
+                  <div className="flex justify-center  items-center gap-[16px] w-full ">
+                    <a className="text-[22px] text-[#000] font-[500]">
+                      Total Bill :
                     </a>
+                    <div className="flex flex-col gap-[2px] text-[20px] text-[#B88E2F] font-[500]">
+                      ₹ {totalBill} /-
+                      <div className="h-[2px] w-full bg-[#B88E2F]" />
+                    </div>
                   </div>
                 </div>
 

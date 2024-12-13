@@ -80,7 +80,7 @@ const ItemInfo = (props) => {
 
   return (
     <div className="flex flex-col items-center justify-center w-full">
-      <div className=" bg-[#F9F1E7] h-[100px] w-full" />
+      <div className=" bg-[#F9F1E7] h-[50px] w-full" />
       <div className="flex flex-col gap-[16px] max-w-[60%] border-[1px] p-8  border-t-[#cdcaca] border-t-4 rounded-2xl shadow-xl mt-[68px]">
         <div className="flex flex-col w-full">
           <div className="text-[42px] font-[400] text-[#000] leading-[62px]">
@@ -95,15 +95,29 @@ const ItemInfo = (props) => {
             />
             <div className="flex flex-col gap-[20px] w-[50%]">
               <div className=" flex justify-between w-full">
-                <Text text={data.type} head="Media" />
+                <div className="flex flex-col gap-[16px]">
+                  <div className="text-[16px] text-[#9F9F9F] font-[400]">
+                    Media
+                  </div>
+                  <div className="text-[16px] text-[#000] font-[400]">
+                    {data.type}
+                  </div>
+                </div>
+                {/* <Text text={data.type} head="Media" /> */}
                 <Text text={data.size} head="Size" />
                 <Text text={data.illuminate} head="illumination" />
                 <Text text={`${data.area} Sq.Ft`} head="Total Area" />
               </div>
-              <Text
+              <div className="flex flex-col gap-[16px]">
+                <div className="text-[16px] text-[#9F9F9F] font-[400]">
+                  Location
+                </div>
+                <div className="text-[16px] text-[#000] font-[400]">{` ${data.location} , ${data.locality}, ${data.city} , ${data.pincode}`}</div>
+              </div>
+              {/* <Text
                 text={` ${data.location} , ${data.locality}, ${data.city} , ${data.pincode}`}
                 head="Location"
-              />
+              /> */}
               <div className="text-[12px] font-[400] text-[#000] leading-[20px] text-start ">
                 {data.desc}
               </div>
@@ -120,6 +134,9 @@ const ItemInfo = (props) => {
                 </button>
               </div>
             </div>
+          </div>
+          <div className="text-[16px] text-[#9F9F9F] font-[400] ml-6">
+            Code: {data.itemCode}
           </div>
         </div>
       </div>
