@@ -121,6 +121,7 @@ const Order = () => {
                     illuminate={item.illuminate}
                     size={item.size}
                     discountPerc={item.discountPerc}
+                    orderStatus={item.orderStatus}
                   />
                 </div>
               ))}
@@ -130,13 +131,7 @@ const Order = () => {
               <div className="text-[16px] text-center font-medium ">
                 You can Buy when we confirm the availability of your orders!
               </div>
-              <div className="flex items-center font-semibold py-2 px-6  h-10  rounded-xl border-2 ">
-                <div
-                  className={` ${orderDetails?.orderStatus == "Accepted" ? "text-[#20b75f] font-bold" : " text-[#B88E2F]"}`}
-                >
-                  {orderDetails?.orderStatus}
-                </div>
-              </div>
+
               <div className="w-[300px]">
                 <Button
                   type="plain"

@@ -20,6 +20,8 @@ import { useEffect, useState } from "react";
 import { auth, db } from "../firebase.config";
 import { doc, getDoc } from "firebase/firestore";
 import UpdateProfile from "./components/auth/user/UpdateProfile";
+import RefundPolicy from "./components/policy/Refund";
+import PrivacyPolicy from "./components/policy/Privacy";
 
 function App() {
   const [inCompleteAccount, setIncomplete] = useState(false);
@@ -75,6 +77,8 @@ function App() {
               <Route path="/loginType" element={<LoginType />} />
               <Route path="/orders" element={<Order />} />
               <Route path="/services" element={<AllServices />} />
+              <Route path="/refund-policy" element={<RefundPolicy />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             </>
           )}
         </Routes>

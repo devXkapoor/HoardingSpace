@@ -13,14 +13,14 @@ import { toast } from "react-toastify";
 const data = [
   {
     head: "Address",
-    add1: " DF02 Govind Bhawan",
-    add2: "IIT Roorkee, 247667",
+    add1: "Tilak Market 45015,",
+    add2: "Chota Bazar First Floor -7",
     img: location,
   },
   {
     head: "Phone",
-    add1: "Mobile: +(84) 546-6789",
-    add2: "Hotline: +(84) 456-6789",
+    add1: "Mobile: +91 7974552274",
+    add2: "Hotline: +91 7974552274",
     img: call,
   },
   {

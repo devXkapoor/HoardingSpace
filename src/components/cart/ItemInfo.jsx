@@ -95,7 +95,7 @@ const ItemInfo = (props) => {
             />
             <div className="flex flex-col gap-[20px] w-[50%]">
               <div className=" flex justify-between w-full">
-                <div className="flex flex-col gap-[16px]">
+                <div className="flex flex-col ">
                   <div className="text-[16px] text-[#9F9F9F] font-[400]">
                     Media
                   </div>
@@ -108,7 +108,7 @@ const ItemInfo = (props) => {
                 <Text text={data.illuminate} head="illumination" />
                 <Text text={`${data.area} Sq.Ft`} head="Total Area" />
               </div>
-              <div className="flex flex-col gap-[16px]">
+              <div className="flex flex-col">
                 <div className="text-[16px] text-[#9F9F9F] font-[400]">
                   Location
                 </div>
@@ -122,8 +122,18 @@ const ItemInfo = (props) => {
                 {data.desc}
               </div>
               <div className=" flex justify-between w-full">
-                <Text text={` ₹ ${data.monthlyprice}`} head="Monthly" />
-                <Text text={` ₹ ${data.perdayprice}`} head="Per Day" />
+                <Text
+                  text={` ₹ ${new Intl.NumberFormat().format(
+                    data.monthlyprice
+                  )}`}
+                  head="Monthly"
+                />
+                <Text
+                  text={` ₹ ${new Intl.NumberFormat().format(
+                    data.perdayprice
+                  )}`}
+                  head="Per Day"
+                />
                 <button
                   className="flex items-center justify-center p-4 border-[1px] border-[#000] rounded-xl w-[200px] text-[20px] text-[#000] font-[400] hover:bg-[#e7e7e7]"
                   onClick={() => {

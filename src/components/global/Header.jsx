@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../../assets/global/Logo.svg";
+import logo from "../../assets/Logo.png";
 import search from "../../assets/global/SearchIcon.svg";
 import cart from "../../assets/global/CartIcon.svg";
 import orders from "../../assets/global/shopping-bag.svg";
@@ -20,8 +20,8 @@ const Header = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between  h-[100px] px-[34px] w-full  shadow-sm">
-        <img src={logo} alt="logo" />
+      <div className="z-50 fixed top-0 bg-[#ffffff] flex items-center justify-between  h-[100px] px-[34px] w-full  shadow-sm">
+        <img className="h-[42px]  " src={logo} alt="logo" />
         <div className="flex  justify-between items-center w-[430px]  h-auto py-[4px] ">
           <Link
             className="text-[16px] text-[#000] font-[500] hover:text-[#B88E2F]"

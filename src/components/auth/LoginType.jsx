@@ -28,8 +28,8 @@ const LoginType = () => {
   return (
     <>
       {user ? (
-        <div className="flex flex-col w-full gap-[34px] mt-[100px] mb-[195px]">
-          <div className="w-full flex flex-col ">
+        <div className="flex flex-col w-full gap-[34px] mb-[195px]">
+          <div className="w-full flex flex-col mt-[160px] ">
             <div className="flex w-full justify-center my-[84px] ">
               <div className="flex flex-col gap-[16px] rounded-md border-[1px] border-t-[#B88E2F] border-t-[2px] w-[30%] text-center p-[18px] shadow-lg">
                 <div className="text-[24px] text-[#111] font-[600]">

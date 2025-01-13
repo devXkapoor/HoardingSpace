@@ -11,11 +11,15 @@ const AboutContent = (props) => {
         <div className="text-[16px] text-[#828282] font-[400] w-full text-center">
           {props.text}
         </div>
-        <div className="text-[16px] text-[#616161] font-[400]">
+        <div className="text-[16px] text-[#616161] font-[400] text-center">
           {props.body}
         </div>
       </div>
-      <img className="w-[400px] h-[300px]" src={img} alt="img" />
+      <img
+        className="w-[420px] h-[280px] rounded-xl"
+        src={props.img}
+        alt="img"
+      />
     </div>
   );
 };

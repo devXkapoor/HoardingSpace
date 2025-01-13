@@ -5,6 +5,12 @@ import ServicesItems from "./ServicesItems";
 import img1 from "../../assets/services/img1.png";
 import img2 from "../../assets/services/img2.png";
 import img3 from "../../assets/services/img3.png";
+import mallmedia from "../../assets/home/MallMedia.png";
+import busShelter from "../../assets/home/BusShelter.png";
+import digitalBillboard from "../../assets/home/DigitalBillboard.png";
+import billboard from "../../assets/home/HoardingSpaceBillboard 1.png";
+import railwayHoarding from "../../assets/home/RailwayHoardingSpace.png";
+import MetroHoarding from "../../assets/home/MetroHoarding.png";
 
 import BackArrowIcon from "../../assets/global/ArrowButtonBack.svg";
 import ForwardArrowIcon from "../../assets/global/ArrowButtonForward.svg";
@@ -50,27 +56,27 @@ function PrevArrow(props) {
 const OurServices = () => {
   const ServicesData = [
     {
-      img: img1,
+      img: billboard,
       text: "BillBoard",
     },
     {
-      img: img2,
+      img: digitalBillboard,
       text: "Transit Media",
     },
     {
-      img: img3,
+      img: mallmedia,
       text: "Mall Media",
     },
     {
-      img: img1,
-      text: "BillBoard",
+      img: MetroHoarding,
+      text: "Metro Media",
     },
     {
-      img: img2,
+      img: railwayHoarding,
       text: "Railway Media",
     },
     {
-      img: img3,
+      img: busShelter,
       text: "Bus Shelter",
     },
   ];

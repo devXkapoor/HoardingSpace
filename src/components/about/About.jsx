@@ -2,6 +2,9 @@ import React from "react";
 import PageType from "../global/PageType";
 import AboutContent from "./AboutContent";
 import img from "../../assets/global/HeroImage.png";
+import values from "../../assets/about/values.webp";
+import goal from "../../assets/about/goal.webp";
+import vision from "../../assets/about/vision.webp";
 
 const About = () => {
   return (
@@ -9,39 +12,35 @@ const About = () => {
       <PageType page="About Us" />
       <AboutContent
         head="Welcome to Hoarding Space!"
-        text="Subheading for description or instructions"
-        body="Body text for your whole article or post. We’ll put in some lorem
-      ipsum to show how a filled-out page might look: Excepteur efficient
-      emerging, minim veniam anim aute carefully curated Ginza conversation
-      exquisite perfect nostrud nisi intricate Content. Qui international
-      first-class nulla ut. Punctual adipisicing, lovely queen tempor
-      eiusmod irure. Exclusive izakaya charming Scandinavian impeccable aute
-      quality of life soft power pariatur Melbourne occaecat discerning. Qui
-      wardrobe aliquip, et Porter destination Toto remarkable officia
-      Helsinki excepteur Basset hound. Zürich sleepy perfect consectetur."
+        // text="Subheading for description or instructions"
+        body="Our vision is to make apnahoarding.com is India's largest and most trusted outdoor advertising marketplace, bringing advertisers, media owners, and agencies together on a single platform.
+
+Our mission is to provide our customers with the best outdoor advertising solutions that help grow their businesses.
+
+"
+        img={goal}
       />
 
       {/*  */}
       <div className="flex w-full justify-between px-[144px]">
-        <img className="w-[400px] h-[300px]" src={img} alt="img" />
+        <img
+          className="w-[420px] h-[280px] rounded-xl"
+          src={values}
+          alt="img"
+        />
         <div className="flex flex-col gap-[16px] max-w-[625px]">
           <div className="text-[40px] text-[#3A3A3A] font-bold w-full text-center">
             Our Vision
           </div>
-          <div className="text-[16px] text-[#828282] font-[400] w-full text-center">
+          {/* <div className="text-[16px] text-[#828282] font-[400] w-full text-center">
             Subheading for description or instructions
-          </div>
-          <div className="text-[16px] text-[#616161] font-[400]">
-            Body text for your whole article or post. We’ll put in some lorem
-            ipsum to show how a filled-out page might look: Excepteur efficient
-            emerging, minim veniam anim aute carefully curated Ginza
-            conversation exquisite perfect nostrud nisi intricate Content. Qui
-            international first-class nulla ut. Punctual adipisicing, lovely
-            queen tempor eiusmod irure. Exclusive izakaya charming Scandinavian
-            impeccable aute quality of life soft power pariatur Melbourne
-            occaecat discerning. Qui wardrobe aliquip, et Porter destination
-            Toto remarkable officia Helsinki excepteur Basset hound. Zürich
-            sleepy perfect consectetur.
+          </div> */}
+          <div className="text-[16px] text-[#616161] font-[400] text-center">
+            Our goal is to become India's largest outdoor advertising
+            marketplace by providing a single platform for advertisers, media
+            owners, and agencies to rent outdoor advertising space, delivering
+            the best solutions to our customers, and revolutionizing the
+            industry through innovation and technology.
           </div>
         </div>
         {/* <img src={img} alt="img" /> */}
@@ -50,16 +49,10 @@ const About = () => {
       {/*  */}
       <AboutContent
         head="Our Values"
-        text="Subheading for description or instructions"
-        body="Body text for your whole article or post. We’ll put in some lorem
-      ipsum to show how a filled-out page might look: Excepteur efficient
-      emerging, minim veniam anim aute carefully curated Ginza conversation
-      exquisite perfect nostrud nisi intricate Content. Qui international
-      first-class nulla ut. Punctual adipisicing, lovely queen tempor
-      eiusmod irure. Exclusive izakaya charming Scandinavian impeccable aute
-      quality of life soft power pariatur Melbourne occaecat discerning. Qui
-      wardrobe aliquip, et Porter destination Toto remarkable officia
-      Helsinki excepteur Basset hound. Zürich sleepy perfect consectetur."
+        // text="Subheading for description or instructions"
+        body="
+Our values are deeply rooted in ensuring exceptional customer satisfaction, embracing innovation and technology to drive progress, fostering transparency and trust in every interaction, and promoting teamwork and collaboration to achieve shared success."
+        img={vision}
       />
     </div>
   );
