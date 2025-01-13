@@ -19,60 +19,74 @@ const TermsAndConditions = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-4">
-      <div className="max-w-[600px] w-full bg-white border-2 p-4 rounded-md shadow-md">
-        <h2 className="text-xl font-bold mb-4">Terms and Conditions</h2>
-
-        <div className="border-2 p-4 h-[200px] overflow-y-scroll mb-4 bg-gray-100">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel
-            quam vehicula, varius ligula vel, suscipit nunc. Donec commodo
-            tincidunt ipsum, nec facilisis turpis lobortis sit amet. Proin sed
-            tristique est. Nullam euismod lacus sit amet ante aliquet, nec
-            varius sapien vehicula. Etiam bibendum magna in dolor finibus, sed
-            posuere nisl dapibus. Aenean a est euismod, venenatis nisi vel,
-            hendrerit mauris.
-          </p>
-          <p>
-            Fusce tincidunt leo nec enim gravida, id tempor leo scelerisque.
-            Integer pharetra ex neque, quis efficitur lorem pellentesque nec.
-            Curabitur scelerisque felis at varius iaculis. Quisque ac justo
-            justo. Curabitur eleifend, urna vel viverra facilisis, felis leo
-            tincidunt eros, sit amet suscipit arcu elit sit amet nulla. Aenean
-            nec gravida eros, ac varius risus. Integer maximus dictum est, et
-            pharetra ligula dapibus a.
-          </p>
-          <p>
-            Nullam viverra lacus metus, non tempor libero scelerisque sit amet.
-            Duis efficitur viverra orci at volutpat. Suspendisse vestibulum, dui
-            sit amet volutpat interdum, libero urna gravida odio, nec pharetra
-            risus odio sit amet velit. Nullam scelerisque leo non arcu
-            imperdiet, nec fringilla odio interdum.
-          </p>
-        </div>
-
-        {/* <div className="flex items-center mb-4">
-          <input
-            type="checkbox"
-            id="agree"
-            className="mr-2"
-            checked={isChecked}
-            onChange={handleCheckboxChange}
-          />
-          <label htmlFor="agree" className="text-sm">
-            I agree to the terms and conditions
-          </label>
-        </div> */}
-
-        {/* <button
-          className={`w-full py-2 rounded-md ${
-            isChecked ? "bg-blue-600 text-white" : "bg-gray-300 text-gray-500"
-          }`}
-          onClick={handleSubmit}
-          disabled={!isChecked}
-        >
-          Submit
-        </button> */}
+    <div className="  bg-white p-4 rounded-lg shadow-lg">
+      <h2 className="text-lg font-bold mb-4 text-gray-800 text-center">
+        Terms and Conditions
+      </h2>
+      <div className="w-full max-h-[200px] overflow-y-auto p-2 bg-gray-50">
+        <p className="mb-2 text-gray-700">
+          ApnaHOARDING.com is committed to protecting the privacy of its users.
+          This Privacy Policy explains how we collect, use, and protect your
+          personal information.
+        </p>
+        <h2 className="text-base font-semibold mb-2 text-gray-800">
+          Information We Collect
+        </h2>
+        <p className="mb-2 text-gray-700">
+          We may collect the following types of information:
+          <ul className="list-disc ml-6">
+            <li>Personal details such as name, email, and phone number.</li>
+            <li>Payment details for transactions.</li>
+            <li>
+              Usage data like IP address, browser type, and device information.
+            </li>
+          </ul>
+        </p>
+        <h2 className="text-base font-semibold mb-2 text-gray-800">
+          How We Use Your Information
+        </h2>
+        <p className="mb-2 text-gray-700">
+          We use your information to:
+          <ul className="list-disc ml-6">
+            <li>Provide and improve our services.</li>
+            <li>Process payments and fulfill orders.</li>
+            <li>Send important updates and promotional materials.</li>
+          </ul>
+        </p>
+        <h2 className="text-base font-semibold mb-2 text-gray-800">
+          Sharing Your Information
+        </h2>
+        <p className="mb-2 text-gray-700">
+          We do not sell your information to third parties. However, we may
+          share your data with trusted service providers who assist in
+          delivering our services.
+        </p>
+        <h2 className="text-base font-semibold mb-2 text-gray-800">
+          Data Security
+        </h2>
+        <p className="mb-2 text-gray-700">
+          We take reasonable precautions to protect your data. However, no
+          method of transmission over the internet or electronic storage is
+          completely secure.
+        </p>
+        <h2 className="text-base font-semibold mb-2 text-gray-800">
+          Your Rights
+        </h2>
+        <p className="mb-2 text-gray-700">
+          You have the right to access, update, or delete your personal
+          information. To exercise your rights, please contact us at{" "}
+          <a href="ApnaHOARDING.com" className="text-blue-600 hover:underline">
+            ApnaHOARDING.com
+          </a>
+          .
+        </p>
+        <h2 className="text-base font-semibold mb-2 text-gray-800">
+          Changes to This Policy
+        </h2>
+        <p className="text-gray-700">
+          We may update this Privacy Policy from time to time. Please check this
+          page periodically for updates.
+        </p>
       </div>
     </div>
   );

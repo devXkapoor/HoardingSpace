@@ -104,110 +104,116 @@ const SignUp = () => {
         </div>
       ) : (
         <div className="flex w-full justify-center my-[84px]">
-          <div className="flex flex-col items-center gap-[32px] p-[16px]">
-            <div className="flex flex-col items-center gap-[32px] p-[16px] ">
-              {/*  */}
-              <div className="flex justify-between items-center w-full px-6">
-                <div className="text-[32px] text-[#333] font-[600]">
-                  Create an account
-                </div>
-                <div
-                  className="text-[16px] text-[#111] font-[400] underline cursor-pointer mr-[6px]"
-                  onClick={() => navigate("/login")}
-                >
-                  Log in insteed
-                </div>
+          <div className="flex flex-col items-center gap-[32px] p-[16px] w-full max-w-[600px] bg-white ">
+            {/* Header */}
+            <div className="flex justify-between items-center w-full px-6">
+              <div className="text-[24px] text-[#333] font-semibold">
+                Create an account
               </div>
-              {/*  */}
-              <div className="flex flex-col gap-[8px] items-start">
-                <div className="text-[16px] text-[#666666] font-[400]">
-                  First Name
-                </div>
+              <div
+                className="text-[14px]  font-medium underline cursor-pointer"
+                onClick={() => navigate("/login")}
+              >
+                Log in instead
+              </div>
+            </div>
+
+            {/* Input Fields */}
+            <div className="flex flex-col gap-[16px] w-full px-6">
+              {/* First Name */}
+              <div className="flex flex-col gap-[8px]">
+                <label className="text-[14px] text-[#666666]">First Name</label>
                 <input
-                  className="h-[56px] min-w-[580px] border-[1px] rounded-[4px] border-[#66666659] pl-[12px] "
+                  className="h-[48px] w-full border border-[#ccc] rounded-md px-3"
                   type="text"
                   placeholder="First name"
                   onChange={(e) => setFname(e.target.value)}
                 />
               </div>
-              {/*  */}
-              <div className="flex flex-col gap-[8px] items-start">
-                <div className="text-[16px] text-[#666666] font-[400]">
-                  Last Name
-                </div>
+              {/* Last Name */}
+              <div className="flex flex-col gap-[8px]">
+                <label className="text-[14px] text-[#666666]">Last Name</label>
                 <input
-                  className="h-[56px] min-w-[580px] border-[1px] rounded-[4px] border-[#66666659] pl-[12px] "
+                  className="h-[48px] w-full border border-[#ccc] rounded-md px-3"
                   type="text"
-                  placeholder="Last name "
+                  placeholder="Last name"
                   onChange={(e) => setLname(e.target.value)}
                 />
               </div>
-              {/*  */}
-              <div className="flex flex-col gap-[8px] items-start">
-                <div className="text-[16px] text-[#666666] font-[400]">
+              {/* Email Address */}
+              <div className="flex flex-col gap-[8px]">
+                <label className="text-[14px] text-[#666666]">
                   Email Address
-                </div>
+                </label>
                 <input
-                  className="h-[56px] min-w-[580px] border-[1px] rounded-[4px] border-[#66666659] pl-[12px] "
+                  className="h-[48px] w-full border border-[#ccc] rounded-md px-3"
                   type="email"
-                  placeholder="Enter your Email... "
+                  placeholder="Enter your Email..."
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              {/*  */}
-              <div className="flex flex-col gap-[8px] items-start">
-                <div className="text-[16px] text-[#666666] font-[400]">
+              {/* Contact Number */}
+              <div className="flex flex-col gap-[8px]">
+                <label className="text-[14px] text-[#666666]">
                   Contact Number
-                </div>
+                </label>
                 <input
-                  className="h-[56px] min-w-[580px] border-[1px] rounded-[4px] border-[#66666659] pl-[12px] "
+                  className="h-[48px] w-full border border-[#ccc] rounded-md px-3"
                   type="text"
                   placeholder="+91 000000"
                   onChange={(e) => setContact(e.target.value)}
                 />
               </div>
-              {/*  */}
-              <div className="flex flex-col gap-[8px] items-start">
-                <div className="text-[16px] text-[#666666] font-[400]">
-                  Password
-                </div>
+              {/* Password */}
+              <div className="flex flex-col gap-[8px]">
+                <label className="text-[14px] text-[#666666]">Password</label>
                 <input
-                  className="h-[56px] min-w-[580px] border-[1px] rounded-[4px] border-[#66666659] pl-[12px] "
+                  className="h-[48px] w-full border border-[#ccc] rounded-md px-3"
                   type="password"
-                  placeholder="ABX@123 "
+                  placeholder="ABX@123"
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
+            </div>
 
-              {/* </div> */}
-              <div>
-                <TermsAndConditions />
-              </div>
-              <div className="flex w-full items-center ml-4 gap-[8px]">
-                <input
-                  className="h-[16px] w-[16px] cursor-pointer"
-                  type="checkbox"
-                  // onClick={() => setToggle(!toggle)}
-                />
-                <div className="text-[14px] text-[#333333] font-[400]">
-                  I agree to the terms and conditions
-                </div>
-              </div>
+            {/* Terms and Conditions */}
+            <div className="w-full px-6  mt-4">
+              <TermsAndConditions />
+            </div>
 
-              <div className="w-full" onClick={() => register()}>
-                <Button name="Create an account" type="plain" />
-              </div>
+            {/* Checkbox */}
+            <div className="flex items-center w-full gap-[8px] px-6 mt-4">
+              <input
+                className="h-[16px] w-[16px] cursor-pointer"
+                type="checkbox"
+              />
+              <span className="text-[14px] text-[#333333]">
+                I agree to the terms and conditions
+              </span>
+            </div>
 
-              {/* signup with google */}
-              <div className="flex w-full  justify-between items-center">
-                <div className="h-[2px] min-w-[200px] bg-[#66666640] ml-[12px]" />
-                <div className="text-[20px] text-[#333] font-[400]">OR</div>
-                <div className="h-[2px] min-w-[200px] bg-[#66666640] mr-[12px]" />
-              </div>
+            {/* Create Account Button */}
+            <div className="w-full px-6 ">
+              <Button
+                name="Create an account"
+                type="plain"
+                onClick={() => register()}
+              />
+            </div>
+
+            {/* Separator */}
+            <div className="flex w-full justify-between items-center px-6 ">
+              <div className="h-[1px] w-full bg-[#ccc]"></div>
+              <div className="text-[14px] text-[#333] mx-2">OR</div>
+              <div className="h-[1px] w-full bg-[#ccc]"></div>
+            </div>
+
+            {/* Google Sign-In */}
+            <div className="w-full px-6">
               <img
-                className=" w-full cursor-pointer"
+                className="cursor-pointer w-full"
                 src={LoginIcon}
-                alt="goofle signin"
+                alt="Google Sign-In"
                 onClick={RegisterWithGoogle}
               />
             </div>
