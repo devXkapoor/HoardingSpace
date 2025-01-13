@@ -82,10 +82,28 @@ const Shop = () => {
             <option value="" disabled>
               Select a city
             </option>
-            <option value="Mumbai">Mumbai</option>
-            <option value="Kolkata">Kolkata</option>
+            <option value="Pune">Ahmedabad</option>
+            <option value="Allahabad">Allahabad</option>
+            <option value="Aurangabad">Aurangabad</option>
+            <option value="Bangalore">Bangalore</option>
+            <option value="Bhopal">Bhopal</option>
             <option value="Delhi">Delhi</option>
-            <option value="Pune">Pune</option>
+            <option value="Ghaziabad">Ghaziabad</option>
+            <option value="Gorakhpur">Gorakhpur</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Indore">Indore</option>
+            <option value="Jabalpur">Jabalpur</option>
+            <option value="Jaipur">Jaipur</option>
+            <option value="Jodhpur">Jodhpur</option>
+            <option value="Kanpur">Kanpur</option>
+            <option value="Kolkata">Kolkata</option>
+            <option value="Maysur">Maysur</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Nagpur">Nagpur</option>
+            <option value="Patna">Patna</option>
+            <option value="Raipur">Raipur</option>
+            <option value="Surat">Surat</option>
+            <option value="Varanasi">Varanasi</option>
           </select>
 
           <button

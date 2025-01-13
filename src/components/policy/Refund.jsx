@@ -14,9 +14,9 @@ const RefundPolicy = () => {
 
         <h2 className="text-xl font-semibold mb-2">Eligibility for Refunds</h2>
         <p className="mb-4">
-          e will process refunds only for instances where extra or dual payments
-          have been deducted due to an error or technical glitch. Regular
-          product or service payments are non-refundable.
+          We will process refunds only for instances where extra or dual
+          payments have been deducted due to an error or technical glitch.
+          Regular product or service payments are non-refundable.
         </p>
 
         <h2 className="text-xl font-semibold mb-2">Notification</h2>
