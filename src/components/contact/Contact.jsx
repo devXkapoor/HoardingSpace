@@ -14,7 +14,7 @@ const data = [
   {
     head: "Address",
     add1: "Tilak Market 45015,",
-    add2: "Chota Bazar First Floor -7",
+    add2: "Chota Bazar First Floor -7 Chhindwara, Madhya Pradesh",
     img: location,
   },
   {

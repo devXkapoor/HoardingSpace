@@ -96,8 +96,12 @@ const Footer = () => {
           <div className="flex flex-col items-start justify-start gap-[20px] ">
             <div className="text-[24px] text-[#000] font-[700]">Reach Us</div>
             <div className="flex text-[16px] text-[#000] font-[500] gap-[6px]">
-              <img src={location} alt="icon" />
-              <div>Tilak Market 45015, Chota Bazar First Floor -7</div>
+              <img className="" src={location} alt="icon" />
+              <div className="flex flex-col">
+                <div>Tilak Market 45015, Chota Bazar First Floor -7</div>
+                <div></div>
+                Chhindwara ,Madhya Pradesh
+              </div>
             </div>
             <div className="flex text-[16px] text-[#000] font-[500] gap-[6px]">
               <img src={email} alt="icon" />
@@ -108,11 +112,41 @@ const Footer = () => {
               <div>+91 7974552274</div>
             </div>
             <div className="flex text-[16px] text-[#000] font-[500] gap-[14px] my-4 cursor-pointer">
-              <img src={facebook} alt="icon" />
-              <img src={linkdin} alt="icon" />
-              <img src={instagram} alt="icon" />
-              <img src={twitter} alt="icon" />
-              <img src={youtube} alt="icon" />
+              <a
+                href="https://www.facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={facebook} alt="Facebook icon" />
+              </a>
+              <a
+                href="https://www.linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={linkdin} alt="LinkedIn icon" />
+              </a>
+              <a
+                href="https://www.instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={instagram} alt="Instagram icon" />
+              </a>
+              <a
+                href="https://www.twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={twitter} alt="Twitter icon" />
+              </a>
+              <a
+                href="https://www.youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={youtube} alt="YouTube icon" />
+              </a>
             </div>
           </div>
         </div>
