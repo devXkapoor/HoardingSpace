@@ -28,8 +28,8 @@ const FinalCart = () => {
   let [color, setColor] = useState("#ffba08");
   let [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const [isRead, setIsRead] = useState(false);
-  const [orderStatus, setOrderStatus] = useState("Pending");
+  const isRead = false;
+  const orderStatus = "Pending";
 
   // const { id } = useParams(); //param got id from url so url change first then we grab id from useparams
 
@@ -115,7 +115,6 @@ const FinalCart = () => {
         lname: userData.lname,
         email: userData.email,
         isRead,
-        orderStatus,
       };
       await setDoc(newOrderDocRef, newOrderData);
 
@@ -144,6 +143,7 @@ const FinalCart = () => {
           perdayprice: item.perdayprice,
           discount: item.discount,
           discountPerc: item.discountPerc,
+          orderStatus,
           // quantity: item.quantity,
         });
       });
@@ -227,11 +227,15 @@ const FinalCart = () => {
                             <Text text={item.type} head="Type" />
 
                             <Text
-                              text={` ₹ ${item.monthlyprice}`}
+                              text={` ₹ ${new Intl.NumberFormat().format(
+                                item.monthlyprice
+                              )}`}
                               head="Monthly"
                             />
                             <Text
-                              text={` ₹ ${item.perdayprice}`}
+                              text={` ₹ $${new Intl.NumberFormat().format(
+                                item.perdayprice
+                              )}`}
                               head="Per Day"
                             />
                           </div>
@@ -252,9 +256,16 @@ const FinalCart = () => {
                           <div className="flex justify-between gap-[76px]">
                             <Text
                               head="Price"
-                              text={`₹ ${item.monthlyprice}`}
+                              text={`₹ ${new Intl.NumberFormat().format(
+                                item.monthlyprice
+                              )}`}
                             />
-                            <Text head="Discount" text={`₹ ${item.discount}`} />
+                            <Text
+                              head="Discount"
+                              text={`₹ ${new Intl.NumberFormat().format(
+                                item.discount
+                              )}`}
+                            />
                             <Text
                               className="mr-[52px]"
                               head="Dicount(%)"
@@ -265,7 +276,11 @@ const FinalCart = () => {
                                 Total
                               </div>
                               <div className="text-[16px] text-[#000] font-[700]">
-                                ₹ {item.monthlyprice} /-
+                                ₹
+                                {new Intl.NumberFormat().format(
+                                  item.monthlyprice
+                                )}
+                                /-
                               </div>
                             </div>
                           </div>
@@ -294,7 +309,7 @@ const FinalCart = () => {
                       Total Bill :
                     </a>
                     <div className="flex flex-col gap-[2px] text-[20px] text-[#B88E2F] font-[500]">
-                      ₹ {totalBill} /-
+                      ₹ {new Intl.NumberFormat().format(totalBill)} /-
                       <div className="h-[2px] w-full bg-[#B88E2F]" />
                     </div>
                   </div>

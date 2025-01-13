@@ -1,5 +1,5 @@
 import React from "react";
-import home from "../../assets/HomeImage.png";
+import home from "../../assets/NewHomeImage.png";
 import OurServices from "./OurServices";
 import Advertisement from "./Advertisement";
 import MessageUs from "../contact/MessageUs";
@@ -13,7 +13,7 @@ const Home = () => {
         <div className="flex items-center justify-end w-full h-auto ">
           <Enquire />
           <img
-            className=" w-full h-[800px] object-cover"
+            className="w-full h-[800px] object-cover"
             src={home}
             alt="homeImage"
           />

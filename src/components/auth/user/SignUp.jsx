@@ -50,6 +50,9 @@ const SignUp = () => {
 
   const register = async () => {
     try {
+      if (!email || !password || !fname || !lname || !contact) {
+        return toast.error("All fields are required!");
+      }
       const user = await createUserWithEmailAndPassword(auth, email, password);
       const data = {
         fname,
@@ -57,10 +60,9 @@ const SignUp = () => {
         email,
         password,
         contact,
-        // isRead: isread,
       };
-      console.log("data", data, user?.user?.uid);
-      const res = await setDoc(doc(db, "UserData", user?.user?.uid), data);
+      console.log("data", data, user?.uid);
+      const res = await setDoc(doc(db, "UserData", user?.uid), data);
       console.log("res", res);
       toast.success("User Registered Succesfully");
       navigate("/");
@@ -192,7 +194,7 @@ const SignUp = () => {
                 </div>
               </div>
 
-              <div className="w-full" onClick={register}>
+              <div className="w-full" onClick={() => register()}>
                 <Button name="Create an account" type="plain" />
               </div>
 

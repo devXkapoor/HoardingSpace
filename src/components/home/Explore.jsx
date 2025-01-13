@@ -4,6 +4,9 @@ import img1 from "../../assets/global/Image1.png";
 import img2 from "../../assets/global/Image2.png";
 import ForwardArrowIcon from "../../assets/global/ArrowButtonForward.svg";
 import arrow from "../../assets/global/ArrowButtonForward.svg";
+import mumbai from "../../assets/home/Mumbai.png";
+import hyderabad from "../../assets/home/Hyderabad.png";
+import Delhi from "../../assets/home/Delhi.png";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,15 +17,20 @@ function NextArrow(props) {
   const { className, style, onClick } = props;
   return (
     <div
-      className={className}
+      className={`${className} cursor-pointer`}
       style={{
         ...style,
         display: "block",
       }}
       onClick={onClick}
     >
-      <div className=" absolute w-[70px]  cursor-pointer  ">
-        <img className="" src={ForwardArrowIcon} alt="forward" />
+      {/* Arrow image */}
+      <div className="w-[70px] h-[70px] pb-20  flex items-center justify-center">
+        <img
+          className="w-[70px] h-[70px]"
+          src={ForwardArrowIcon}
+          alt="forward"
+        />
       </div>
     </div>
   );
@@ -53,9 +61,9 @@ const Explore = () => {
 
   return (
     <>
-      <div className="flex justify-center gap-[24px] items-start bg-[#FCF8F3] w-full py-[12px] ">
+      <div className="flex justify-center gap-[24px] items-center  bg-[#FCF8F3] w-full ">
         {/*  */}
-        <div className="flex flex-col items-start justify-center gap-[16px] max-w-[450px] h-[580px]">
+        <div className="flex flex-col items-start justify-center gap-[16px] max-w-[450px] py-[100px]">
           <div className="flex flex-col w-full items-center justify-center text-start ">
             <div className="text-[#333] text-[40px] font-[700]">
               Explore your Urban Landscape
@@ -66,16 +74,30 @@ const Explore = () => {
             </div>
           </div>
           {/*  */}
-          <div className="w-[176px] h-[48px]" onClick={() => navigate("/city")}>
+          <div
+            className="w-[176px] h-[48px]"
+            onClick={() => {
+              navigate("/city");
+              window.scrollTo(0, 0);
+            }}
+          >
             <Button name={"Explore More"} type={"plain"} />
           </div>
         </div>
 
-        <div className="flex w-[50%] p-[32px] ">
-          <Slider className="w-full gap-[12px] " {...settings}>
-            <img className="max-w-[350px]" src={img2} alt="img" />
-            <img className=" max-w-[350px]" src={img2} alt="img" />
-            <img className="max-w-[350px]" src={img2} alt="img" />
+        <div className="flex w-[60%] p-[38px] mt-10 ">
+          <Slider className="w-full " {...settings}>
+            <img
+              className="max-w-[400px] rounded-lg bg-cover"
+              src={Delhi}
+              alt="img"
+            />
+            <img className=" max-w-[400px] rounded-lg" src={mumbai} alt="img" />
+            <img
+              className="max-w-[400px] rounded-lg"
+              src={hyderabad}
+              alt="img"
+            />
           </Slider>
         </div>
       </div>

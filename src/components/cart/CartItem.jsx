@@ -6,8 +6,19 @@ import calender from "../../assets/CalenderIcon.svg";
 const CartItem = (props) => {
   return (
     <div className="flex flex-col gap-[16px] w-[800px] p-4 shadow-md rounded-xl ">
-      <div className="flex justify-between w-full ">
+      <div className="flex justify-between items-center w-full ">
         <div className="text-[16px] text-[#000] font-[500] ">{props.title}</div>
+        <div
+          className={`${
+            props.orderStatus === "Accepted"
+              ? "text-[#20b75f] font-bold" // Green for Accepted
+              : props.orderStatus === "Cancelled"
+                ? "text-[#ff4d4f] font-bold" // Red for Cancelled
+                : "text-[#B88E2F] font-bold" // Yellow for Pending
+          } `}
+        >
+          {props.orderStatus}
+        </div>
       </div>
       <div className="flex justify-center items-center gap-[24px] w-full py-[4px]">
         <img
@@ -19,8 +30,14 @@ const CartItem = (props) => {
           <div className="flex justify-start gap-[76px]">
             <Text text={props.type} head="Type" />
 
-            <Text text={` ₹ ${props.monthlyprice}`} head="Monthly" />
-            <Text text={` ₹ ${props.perdayprice}`} head="Per Day" />
+            <Text
+              text={` ₹ ${new Intl.NumberFormat().format(props.monthlyprice)}`}
+              head="Monthly"
+            />
+            <Text
+              text={` ₹ $${new Intl.NumberFormat().format(props.perdayprice)}`}
+              head="Per Day"
+            />
           </div>
           <div className="flex justify-start gap-[76px] ">
             <div className="flex flex-col items-center gap-[14px]">
@@ -35,8 +52,14 @@ const CartItem = (props) => {
             {/* </div> */}
           </div>
           <div className="flex justify-between gap-[76px]">
-            <Text head="Price" text={`₹ ${props.monthlyprice}`} />
-            <Text head="Discount" text={`₹ ${props.discount}`} />
+            <Text
+              head="Price"
+              text={`₹ ${new Intl.NumberFormat().format(props.monthlyprice)}`}
+            />
+            <Text
+              head="Discount"
+              text={`₹ ${new Intl.NumberFormat().format(props.discount)}`}
+            />
             <Text
               className="mr-[52px]"
               head="Dicount(%)"
@@ -47,7 +70,7 @@ const CartItem = (props) => {
                 Total
               </div>
               <div className="text-[16px] text-[#000] font-[700]">
-                ₹ {props.monthlyprice}
+                ₹ {new Intl.NumberFormat().format(props.monthlyprice)}
               </div>
             </div>
           </div>

@@ -6,7 +6,7 @@ const Enquire = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="flex flex-col items-start max-w-[650px] max-h-[445px] bg-[#FFF3E3] z-10 absolute rounded-lg p-[72px_52px_4px_32px] mr-[142px]">
+      <div className="flex flex-col items-start max-w-[590px] max-h-[445px] bg-[#FFF3E3] z-10 absolute rounded-lg p-[72px_52px_4px_32px] top-[30%] left-[55%]">
         <div className="text-[16px] text-[#333] font-[600]">
           Step into the Spotlight
         </div>
@@ -18,7 +18,10 @@ const Enquire = () => {
         </div>
         <div
           className="w-[260px] h-[74px] my-[16px]"
-          onClick={() => navigate("/contact")}
+          onClick={() => {
+            navigate("/contact");
+            window.scrollTo(0, 0);
+          }}
         >
           <Button
             name={"ENQUIRE NOW"}

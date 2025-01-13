@@ -28,7 +28,7 @@ const AdvertiseItem = (props) => {
             <div className="flex w-full justify-start gap-[12px]">
               <div className="flex items-center ">
                 <div className="text-[20px] text-[#3A3A3A] font-[600] line-through  ">
-                  ₹{props.price}
+                  ₹{new Intl.NumberFormat().format(props.price)}
                 </div>
               </div>
               <span class="flex items-center absolute top-0 right-0 h-[50px] w-[50px] bg-[#E97171] text-[16px] text-white text-xs font-bold px-3 py-1 rounded-full -translate-x-[20px] translate-y-[20px]">
@@ -36,7 +36,7 @@ const AdvertiseItem = (props) => {
               </span>
 
               <div className="text-[20px] text-[#3A3A3A] font-[600]">
-                ₹ {props.discount}
+                ₹ {new Intl.NumberFormat().format(props.discount)}
               </div>
             </div>
           </div>

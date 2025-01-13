@@ -3,31 +3,39 @@ import PageType from "../global/PageType";
 import img1 from "../../assets/services/img1.png";
 import img2 from "../../assets/services/img2.png";
 import img3 from "../../assets/services/img3.png";
+
+import mallmedia from "../../assets/home/MallMedia.png";
+import busShelter from "../../assets/home/BusShelter.png";
+import digitalBillboard from "../../assets/home/DigitalBillboard.png";
+import billboard from "../../assets/home/HoardingSpaceBillboard 1.png";
+import railwayHoarding from "../../assets/home/RailwayHoardingSpace.png";
+import MetroHoarding from "../../assets/home/MetroHoarding.png";
+
 import { useNavigate } from "react-router-dom";
 
 const ServicesData = [
   {
-    img: img1,
+    img: billboard,
     text: "BillBoard",
   },
   {
-    img: img2,
-    text: "Transit Media",
+    img: MetroHoarding,
+    text: "Metro Media",
   },
   {
-    img: img3,
+    img: mallmedia,
     text: "Mall Media",
   },
   {
-    img: img1,
-    text: "BillBoard",
+    img: digitalBillboard,
+    text: "Digital Billboard",
   },
   {
-    img: img2,
+    img: railwayHoarding,
     text: "Railway Media",
   },
   {
-    img: img3,
+    img: busShelter,
     text: "Bus Shelter",
   },
 ];
