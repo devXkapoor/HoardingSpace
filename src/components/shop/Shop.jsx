@@ -130,6 +130,8 @@ const Shop = () => {
             <option value="Lucknow">Lucknow</option>
             <option value="Ludhiana">Ludhiana</option>
             <option value="Manglore">Manglore</option>
+            <option value="Mussoorie">Mussoorie</option>
+
             <option value="Mathura">Mathura</option>
             <option value="Meerut">Meerut</option>
             <option value="Mumbai">Mumbai</option>
