@@ -233,7 +233,7 @@ const FinalCart = () => {
                               head="Monthly"
                             />
                             <Text
-                              text={` ₹ $${new Intl.NumberFormat().format(
+                              text={` ₹ ${new Intl.NumberFormat().format(
                                 item.perdayprice
                               )}`}
                               head="Per Day"

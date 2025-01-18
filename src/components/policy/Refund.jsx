@@ -40,6 +40,26 @@ const RefundPolicy = () => {
           Refunds will be credited back to the original payment method used for
           the transaction.
         </p>
+        <p className="my-6">
+          Pulsehoarding Solution LLP reserves the right to decline refund
+          requests that do not meet the eligibility criteria as stated above.
+          Refunds will be processed as quickly as possible, but the time it
+          takes for the refunded amount to appear in your account may vary
+          depending on your financial institution. In case of any disputes or
+          further inquiries, please do not hesitate to reach out to our customer
+          support team for assistance.
+          <p className="mt-2">
+            Email:
+            <a className="text-blue-500 hover:underline mx-2 cursor-pointer">
+              alerts@apnahoarding.com{" "}
+            </a>
+          </p>
+          <p className="mb-2"> Phone: +91 7974552274</p>
+          <p>
+            We value your satisfaction and appreciate your business. Thank you
+            for choosing pulsehoarding Solution LLP.
+          </p>
+        </p>
       </div>
     </div>
   );

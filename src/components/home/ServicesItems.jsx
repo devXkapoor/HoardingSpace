@@ -8,7 +8,11 @@ const ServicesItems = (props) => {
     <>
       <div
         className="flex flex-col items-center cursor-pointer"
-        onClick={() => navigate(`/shop/${props.name}`)}
+        onClick={() => {
+          navigate(`/shop/${props.name}`);
+
+          window.scrollTo(0, 0);
+        }}
       >
         <img
           className="h-[480px] w-[380px] rounded-sm"
