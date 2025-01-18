@@ -86,9 +86,6 @@ const Shop = () => {
             <option value="Ahmedabad">Ahmedabad</option>
             <option value="Ajmer">Ajmer</option>
             <option value="Aligarh">Aligarh</option>
-            <option value="Allahabad">Allahabad</option>
-            <option value="Allahabad">Allahabad</option>
-            <option value="Amritsar">Amritsar</option>
             <option value="Amritsar">Amritsar</option>
             <option value="Aurangabad">Aurangabad</option>
             <option value="Bareilly">Bareilly</option>
@@ -113,6 +110,8 @@ const Shop = () => {
             <option value="Gorakhpur">Gorakhpur</option>
             <option value="Gujarat">Gujarat</option>
             <option value="Guntur">Guntur</option>
+            <option value="Gurgaon ">Gurgaon </option>
+
             <option value="Guwahati">Guwahati</option>
             <option value="Gwalior">Gwalior</option>
             <option value="Hyderabad">Hyderabad</option>
@@ -127,7 +126,6 @@ const Shop = () => {
             <option value="Jhansi">Jhansi</option>
             <option value="Kanpur">Kanpur</option>
             <option value="Kolhapur">Kolhapur</option>
-            <option value="Kolkata">Kolkata</option>
             <option value="Kolkata">Kolkata</option>
             <option value="Lucknow">Lucknow</option>
             <option value="Ludhiana">Ludhiana</option>
@@ -150,7 +148,6 @@ const Shop = () => {
             <option value="Satna">Satna</option>
             <option value="Shimla">Shimla</option>
             <option value="Solapur">Solapur</option>
-            <option value="Surat">Surat</option>
             <option value="Surat">Surat</option>
             <option value="Thane">Thane</option>
             <option value="Udaipur">Udaipur</option>
