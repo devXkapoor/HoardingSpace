@@ -54,10 +54,7 @@ const PrivacyPolicy = () => {
         <p className="mb-4">
           You have the right to access, update, or delete your personal
           information. To exercise your rights, please contact us at{" "}
-          <a href="ApnaHOARDING.com" className="text-blue-500 hover:underline">
-            ApnaHOARDING.com
-          </a>
-          .
+          <a className="text-blue-500 hover:underline">ApnaHOARDING.com</a>.
         </p>
 
         <h2 className="text-xl font-semibold mb-2">Changes to This Policy</h2>

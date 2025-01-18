@@ -10,6 +10,7 @@ const AdvertiseItem = (props) => {
         className="h-[450px] w-[285px] transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-105 duration-150 hover:cursor-pointer hover:shadow-lg"
         onClick={() => {
           navigate(`/cart/${props.id}`);
+          window.scrollTo(0, 0);
         }}
       >
         <div className="flex flex-col w-[285px] bg-[#F4F5F7] h-[450px] relative  z-0 ">

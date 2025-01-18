@@ -42,12 +42,13 @@ const Footer = () => {
 
             <div
               className="text-[16px] text-[#000] font-[400] hover:underline cursor-pointer"
-              onClick={() => navigate("/contact")}
+              onClick={() => {
+                navigate("/contact");
+                window.scrollTo(0, 0);
+              }}
             >
               Contact
             </div>
-            {/* <div className="text-[16px] text-[#000] font-[400]">{props.fourth}</div>
-      <div className="text-[16px] text-[#000] font-[400]">{props.fifth}</div> */}
           </div>
 
           <div className="flex flex-col items-start gap-[14px]">

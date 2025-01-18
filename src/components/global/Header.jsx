@@ -74,13 +74,20 @@ const Header = () => {
                   className="w-[28px] h-[28px] hover:cursor-pointer"
                   src={UserIcon}
                   alt="contact-icon"
-                  onClick={() => navigate("/signup")}
+                  onClick={() => {
+                    navigate("/signup");
+                    window.scrollTo(0, 0);
+                  }}
                 />
               </div>
             ) : (
               <div
                 className="text-[20px] text-[#000] font-semibold cursor-pointer hover:text-[#B88E2F] "
-                onClick={() => navigate("/login")}
+                onClick={() => {
+                  navigate("/login");
+
+                  window.scrollTo(0, 0);
+                }}
               >
                 Login
               </div>
