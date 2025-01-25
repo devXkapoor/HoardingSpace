@@ -78,6 +78,8 @@ const ItemInfo = (props) => {
     );
   }
 
+  console.log(user);
+
   return (
     <div className="flex flex-col items-center justify-center w-full">
       <div className=" bg-[#F9F1E7] h-[50px] w-full" />
@@ -137,7 +139,9 @@ const ItemInfo = (props) => {
                 <button
                   className="flex items-center justify-center p-4 border-[1px] border-[#000] rounded-xl w-[200px] text-[20px] text-[#000] font-[400] hover:bg-[#e7e7e7]"
                   onClick={() => {
-                    SubmitItem();
+                    user
+                      ? SubmitItem()
+                      : toast.info("Please login to Add to cart");
                   }}
                 >
                   Add to Cart
