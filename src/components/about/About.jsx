@@ -11,7 +11,7 @@ const About = () => {
     <div className="flex flex-col items-center w-full gap-[118px] mb-[100px]">
       <PageType page="About Us" />
       <AboutContent
-        head="Welcome to Hoarding Space!"
+        head="Welcome to Apna Hoarding!"
         // text="Subheading for description or instructions"
         body="Our vision is to make apnahoarding.com is India's largest and most trusted outdoor advertising marketplace, bringing advertisers, media owners, and agencies together on a single platform.
 

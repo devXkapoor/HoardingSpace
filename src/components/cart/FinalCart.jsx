@@ -82,6 +82,7 @@ const FinalCart = () => {
       toast.success("Item deleated successfully");
       // setLoading(false);
       navigate("/");
+      window.scrollTo(0, 0);
     } catch (err) {
       console.log(err);
     }
